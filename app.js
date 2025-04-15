@@ -60,56 +60,47 @@ const loginLimiter = rateLimit({
 });
 
 // CSP設定
-const cspOptions = process.env.NODE_ENV === 'production' 
-  ? {
-      directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: [
-          "'self'", 
-          "https://cdn.jsdelivr.net", 
-          "https://*.cloudinary.com"
-        ],
-        styleSrc: [
-          "'self'", 
-          "https://cdn.jsdelivr.net", 
-          "https://fonts.googleapis.com"
-        ],
-        imgSrc: [
-          "'self'", 
-          "data:", 
-          "https://res.cloudinary.com", 
-          "https://*.cloudinary.com", 
-          "blob:"
-        ],
-        fontSrc: [
-          "'self'", 
-          "data:", 
-          "https://fonts.gstatic.com", 
-          "https://cdn.jsdelivr.net"
-        ],
-        connectSrc: ["'self'", "https://*.cloudinary.com"],
-        frameSrc: ["'self'", "https://*.cloudinary.com"],
-        mediaSrc: ["'self'", "https://*.cloudinary.com"],
-        objectSrc: ["'none'"],
-        upgradeInsecureRequests: [],
-        reportUri: '/csp-report'
-      }
-    }
-  : {
-      // 開発環境用の緩い設定
-      directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://cdn.jsdelivr.net", "https://*.cloudinary.com"],
-        styleSrc: ["'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net", "https://fonts.googleapis.com", "http://localhost:*", "https://localhost:*"],
-        imgSrc: ["'self'", "data:", "https://res.cloudinary.com", "https://*.cloudinary.com", "blob:"],
-        fontSrc: ["'self'", "data:", "https://fonts.gstatic.com", "https://cdn.jsdelivr.net"],
-        connectSrc: ["'self'", "https://*.cloudinary.com"],
-        frameSrc: ["'self'", "https://*.cloudinary.com"],
-        mediaSrc: ["'self'", "https://*.cloudinary.com"]
-      }
-    };
+const cspOptions = {
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: [
+      "'self'", 
+      "'unsafe-inline'", 
+      "'unsafe-eval'",
+      "https://cdn.jsdelivr.net", 
+      "https://*.cloudinary.com"
+    ],
+    styleSrc: [
+      "'self'", 
+      "'unsafe-inline'",  // インラインスタイルを許可
+      "https://cdn.jsdelivr.net", 
+      "https://fonts.googleapis.com"
+    ],
+    imgSrc: [
+      "'self'", 
+      "data:", 
+      "https://res.cloudinary.com", 
+      "https://*.cloudinary.com", 
+      "blob:"
+    ],
+    fontSrc: [
+      "'self'", 
+      "data:", 
+      "https://fonts.gstatic.com", 
+      "https://cdn.jsdelivr.net"
+    ],
+    connectSrc: [
+      "'self'", 
+      "https://*.cloudinary.com",
+      "https://api.cloudinary.com"  // API接続を明示的に許可
+    ],
+    frameSrc: ["'self'", "https://*.cloudinary.com"],
+    mediaSrc: ["'self'", "https://*.cloudinary.com"],
+    objectSrc: ["'none'"]
+  }
+};
 
-// HTTPセキュリティヘッダー
+// 環境に関わらず同じCSP設定を使用
 app.use(helmet({
   contentSecurityPolicy: cspOptions
 }));
@@ -130,13 +121,19 @@ app.set('views', path.join(__dirname, 'views'));
 
 // 6. 静的ファイル設定
 express.static.mime.define({'text/css': ['css']});
-app.use(express.static('public', {
-  setHeaders: (res, path) => {
-    if (path.endsWith('.css')) {
+app.use(express.static(path.join(__dirname, 'public'), {
+  maxAge: '1d',  // キャッシュ期間設定
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.css')) {
       res.setHeader('Content-Type', 'text/css');
+    } else if (filePath.endsWith('.js')) {
+      res.setHeader('Content-Type', 'application/javascript');
     }
   }
 }));
+
+// デバッグ用のログ
+console.log('静的ファイルのパス:', path.join(__dirname, 'public'));
 
 // 7. グローバル変数の設定
 app.use((req, res, next) => {
