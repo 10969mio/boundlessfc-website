@@ -1,0 +1,73 @@
+<!-- views/posts/create.ejs -->
+<main class="main-content">
+  <div class="create-post-container">
+    <h1>Create New Article</h1>
+    
+    <% if (locals.error && error.length > 0) { %>
+      <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+    
+    <form action="/posts" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="title">Title<span class="required">*</span></label>
+        <input type="text" id="title" name="title" class="form-control" required>
+      </div>
+
+      <div class="form-group">
+        <label for="content">Content<span class="required">*</span></label>
+        <textarea id="content" name="content" class="form-control" rows="8" maxlength="300" required></textarea>
+        <div class="char-counter">Characters remaining: <span id="charCount">300</span></div>
+      </div>
+
+      <div class="form-group">
+        <label for="image">Thumbnail Image<span class="required">*</span></label>
+        <input type="file" id="image" name="image" class="form-control" accept="image/*" required>
+        <div class="form-text">Recommended size: 1200 x 800px</div>
+      </div>
+
+      <div class="image-preview">
+        <img id="imagePreview" src="#" alt="Preview" style="display: none; max-width: 100%; max-height: 300px; margin-top: 15px; border-radius: 5px;">
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="submit-btn">Post</button>
+        <a href="/posts" class="cancel-btn">Cancel</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Character counter
+    const contentTextarea = document.getElementById('content');
+    const charCountSpan = document.getElementById('charCount');
+    const maxLength = 300;
+
+    contentTextarea.addEventListener('input', function() {
+      const remainingChars = maxLength - this.value.length;
+      charCountSpan.textContent = remainingChars;
+      
+      if (remainingChars < 0) {
+        charCountSpan.classList.add('text-danger');
+      } else {
+        charCountSpan.classList.remove('text-danger');
+      }
+    });
+
+    // Image preview
+    const imageInput = document.getElementById('image');
+    const imagePreview = document.getElementById('imagePreview');
+
+    imageInput.addEventListener('change', function() {
+      if (this.files && this.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+          imagePreview.src = e.target.result;
+          imagePreview.style.display = 'block';
+        };
+        
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+  </script>
+</main>

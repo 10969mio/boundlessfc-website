@@ -1,0 +1,142 @@
+/* 記事一覧ページのスタイル */
+.posts-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.page-header h1 {
+  font-size: var(--font-4xl);
+  color: var(--primary-color);
+  font-family: var(--special-font);
+  margin: 0;
+}
+
+.create-btn {
+  display: block;
+  background-color: var(--primary-color);
+  color: var(--dark-color);
+  text-align: center;
+  padding: 12px 20px;
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: var(--border-radius-sm);
+  transition: background-color var(--transition-speed);
+}
+
+.create-btn:hover {
+  background-color: var(--primary-color-dark);
+  color: var(--dark-color);
+}
+
+/* グリッドを左詰めで表示 */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-md);
+  margin: 0;
+}
+
+/* 記事カード - サイズを小さく */
+.post-card {
+  width: 100%;
+  height: 350px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-speed) ease;
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+/* 記事カード内の画像スタイル */
+.post-image-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* オーバーレイ */
+.post-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, var(--overlay-dark) 30%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.2) 100%);
+}
+
+/* 記事コンテンツ */
+.post-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.post-title {
+  color: var(--light-color);
+  font-size: var(--font-xl);
+  font-weight: 700;
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.4;
+}
+
+.post-date {
+  color: var(--primary-color);
+  font-size: var(--font-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+/* 続きを読むボタン */
+.read-more-btn {
+  display: block;
+  background-color: var(--primary-color);
+  color: var(--dark-color);
+  text-align: center;
+  padding: var(--spacing-xs) 0;
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: var(--border-radius-sm);
+  transition: background-color var(--transition-speed);
+  font-size: var(--font-sm);
+}
+
+.read-more-btn:hover {
+  background-color: var(--primary-color-dark);
+  color: var(--dark-color);
+}
+
+.no-posts {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 50px;
+  background-color: var(--overlay-card);
+  border-radius: var(--border-radius-md);
+  color: var(--text-muted);
+  border: var(--border-primary);
+}
+

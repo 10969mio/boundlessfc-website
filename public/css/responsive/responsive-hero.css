@@ -1,0 +1,55 @@
+/* responsive-hero.css
+ * ヒーローセクションとトップメニューのレスポンシブ対応
+ */
+
+/* ===== 大きい画面からタブレットサイズへの対応 (992px以下) ===== */
+@media (max-width: 992px) {
+  /* ヒーローセクション */
+  .responsive-hero-title {
+    display: block;
+    font-size: 60px;
+  }
+}
+
+/* ===== PC小〜タブレット対応 (768px以下) ===== */
+@media (max-width: 768px) {
+  /* ヒーローセクション */
+  .responsive-hero-title {
+    display: block;
+    font-size: 3rem;
+  }
+  
+  /* トップメニュー */
+  .top-menu h1 {
+    font-size: var(--font-3xl);
+  }
+  
+  .menu-icon {
+    font-size: 40px;
+  }
+}
+
+/* ===== スマホサイズ対応 (576px以下) ===== */
+@media (max-width: 576px) {
+  /* ヒーローセクション */
+  .responsive-hero-title {
+    display: block;
+    font-size: 2.5rem;
+  }
+  
+  /* トップメニュー */
+  .top-menu h1 {
+    font-size: var(--font-2xl);
+    padding-right: 15px;
+  }
+  
+  .menu-icon {
+    font-size: 30px;
+    padding-right: 15px;
+  }
+  
+  .top-menu-bg-2 {
+    width: 70px;
+    height: 70px;
+  }
+}

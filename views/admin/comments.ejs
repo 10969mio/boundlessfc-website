@@ -1,0 +1,62 @@
+<!-- views/admin/comments.ejs -->
+<div class="container mt-4">
+    <h1 class="mb-4">未承認コメント管理</h1>
+    
+    <% if (locals.messages && messages.success) { %>
+      <div class="alert alert-success">
+        <%= messages.success %>
+      </div>
+    <% } %>
+    
+    <% if (locals.messages && messages.error) { %>
+      <div class="alert alert-danger">
+        <%= messages.error %>
+      </div>
+    <% } %>
+    
+    <% if (comments && comments.length > 0) { %>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>投稿者</th>
+              <th>記事</th>
+              <th>コメント内容</th>
+              <th>投稿日時</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% comments.forEach(comment => { %>
+              <tr>
+                <td><%= comment.user ? comment.user.username : '不明' %></td>
+                <td>
+                  <a href="/posts/<%= comment.post._id %>">
+                    <%= comment.post ? comment.post.title : '不明' %>
+                  </a>
+                </td>
+                <td><%= comment.content %></td>
+                <td><%= comment.createdAt.toLocaleDateString('ja-JP') %></td>
+                <td>
+                  <form action="/comments/approve/<%= comment._id %>" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-sm btn-success">承認</button>
+                  </form>
+                  <form action="/comments/delete/<%= comment._id %>" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-sm btn-danger">削除</button>
+                  </form>
+                </td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    <% } else { %>
+      <div class="alert alert-info">
+        未承認のコメントはありません。
+      </div>
+    <% } %>
+    
+    <div class="mt-3">
+      <a href="/admin/dashboard" class="btn btn-secondary">管理画面に戻る</a>
+    </div>
+  </div>

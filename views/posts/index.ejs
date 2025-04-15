@@ -1,0 +1,32 @@
+<main class="main-content">
+  <div class="posts-container">
+    <div class="page-header">
+      <h1>Team Blog</h1>
+      <% if (locals.user && user.role === 'admin') { %>
+        <a href="/posts/create" class="create-btn">Create New Article</a>
+      <% } %>
+    </div>
+
+    <div class="posts-grid">
+      <% if (posts && posts.length > 0) { %>
+        <% posts.forEach(post => { %>
+          <div class="post-card">
+            <img src="<%= post.image %>" alt="<%= post.title %>" class="post-image-bg">
+            <div class="post-overlay"></div>
+            <div class="post-content">
+              <h3 class="post-title"><%= post.title %></h3>
+              <div class="post-date">
+                <%= new Date(post.createdAt).toLocaleDateString('en-US') %>
+              </div>
+              <a href="/posts/<%= post._id %>" class="read-more-btn">Read More</a>
+            </div>
+          </div>
+        <% }); %>
+      <% } else { %>
+        <div class="no-posts">
+          <p>No articles available.</p>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</main>

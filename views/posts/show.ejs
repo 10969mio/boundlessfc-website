@@ -1,0 +1,122 @@
+<main class="main-content post-detail-page">
+  <div class="post-detail-container">
+    <!-- 成功メッセージ -->
+    <% if (locals.messages && messages.success) { %>
+      <div class="alert alert-success" style="width: 100%;">
+        <%= messages.success %>
+      </div>
+    <% } %>
+    
+    <!-- 記事タイトル -->
+    <h1 class="post-detail-title"><%= post.title %></h1>
+    
+    <!-- 記事画像 -->
+    <div class="post-image-container">
+      <img src="<%= post.image %>" class="post-image" alt="<%= post.title %>">
+    </div>
+    
+    <!-- 投稿情報（日付） -->
+    <div class="post-meta">
+      <span>Author: <%= post.author ? post.author.username : 'Unknown' %></span> | 
+      <span>Posted: <%= post.createdAt.toLocaleDateString('en-US') %></span>
+      <% if (post.updatedAt && post.updatedAt > post.createdAt) { %>
+        | <span>Updated: <%= post.updatedAt.toLocaleDateString('en-US') %></span>
+      <% } %>
+    </div>
+    
+    <!-- 記事内容 -->
+    <div class="post-detail-content-wrapper">
+      <div class="post-detail-content">
+        <%= post.content %>
+      </div>
+    </div>
+    
+    <!-- 区切り線 -->
+    <div class="content-divider"></div>
+    
+    <!-- アクションボタン -->
+    <div class="post-actions">
+      <a href="/posts" class="post-btn back-btn">BACK TO ARTICLES</a>
+      
+      <% if (locals.user && user.role === 'admin') { %>
+        <a href="/posts/edit/<%= post._id %>" class="post-btn edit-btn">EDIT</a>
+        <button type="button" class="post-btn delete-btn" data-bs-toggle="modal" data-bs-target="#deleteModal">
+          DELETE
+        </button>
+      <% } %>
+    </div>
+    
+    <!-- コメントセクション -->
+    <div class="comments-section">
+      <h2 class="comments-title">Comments</h2>
+      
+      <% if (locals.user) { %>
+        <!-- コメントフォーム -->
+        <div class="comment-form-container">
+          <form action="/comments/create" method="POST">
+            <input type="hidden" name="postId" value="<%= post._id %>">
+            <div class="comment-prompt">Share your thoughts</div>
+            <textarea class="comment-textarea" id="content" name="content" rows="3" required></textarea>
+            <button type="submit" class="comment-submit">SUBMIT</button>
+          </form>
+        </div>
+      <% } else { %>
+        <div class="login-prompt">
+          Please <a href="/auth/login" class="login-link">log in</a> to post a comment.
+        </div>
+      <% } %>
+      
+      <!-- コメントリスト -->
+      <div class="comments-list">
+        <% if (locals.comments && comments.length > 0) { %>
+          <% comments.forEach(comment => { %>
+            <div class="comment-card">
+              <div class="comment-header">
+                <div class="comment-author">
+                  <%= comment.user ? comment.user.username : 'Unknown User' %>
+                </div>
+                <div class="comment-date">
+                  <%= comment.createdAt.toLocaleDateString('en-US') %>
+                </div>
+              </div>
+              <div class="comment-content"><%= comment.content %></div>
+              
+              <% if (locals.user && user.role === 'admin') { %>
+                <div class="comment-actions">
+                  <form action="/comments/delete/<%= comment._id %>?redirect=/posts/<%= post._id %>" method="POST">
+                    <button type="submit" class="delete-comment-btn">Delete</button>
+                  </form>
+                </div>
+              <% } %>
+            </div>
+          <% }); %>
+        <% } else { %>
+          <p class="no-comments">No comments yet. Be the first to share your thoughts!</p>
+        <% } %>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 削除確認モーダル -->
+  <% if (locals.user && user.role === 'admin') { %>
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">Confirm Article Deletion</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete "<%= post.title %>"? This action cannot be undone.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <form action="/posts/delete/<%= post._id %>" method="POST">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% } %>
+</main>

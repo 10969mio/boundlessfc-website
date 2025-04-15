@@ -1,0 +1,47 @@
+<!-- views/auth/edit-profile.ejs -->
+<div class="profile-container">
+    <div class="profile-card">
+      <h2 class="profile-title">EDIT PROFILE</h2>
+      
+      <% if (locals.success && success.length > 0) { %>
+        <div class="alert alert-success"><%= success %></div>
+      <% } %>
+      
+      <% if (locals.error && error.length > 0) { %>
+        <div class="alert alert-danger"><%= error %></div>
+      <% } %>
+      
+      <form action="/auth/profile/edit" method="POST" class="auth-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" class="form-control" value="<%= user.username %>" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-control" value="<%= user.email %>" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="currentPassword">Current password (only if changing)</label>
+          <input type="password" id="currentPassword" name="currentPassword" class="form-control">
+        </div>
+        
+        <div class="form-group">
+          <label for="newPassword">New password (only if changing)</label>
+          <input type="password" id="newPassword" name="newPassword" class="form-control">
+        </div>
+        
+        <div class="form-group">
+          <label for="confirmPassword">Password confirmation (only if changing)</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" class="form-control">
+        </div>
+        
+        <button type="submit" class="auth-btn">Update</button>
+      </form>
+      
+      <div class="profile-actions">
+        <a href="/auth/profile" class="auth-btn">Cancel</a>
+      </div>
+    </div>
+  </div>

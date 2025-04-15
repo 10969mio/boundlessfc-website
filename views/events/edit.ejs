@@ -1,0 +1,149 @@
+<!-- views/events/edit.ejs -->
+<div class="event-edit-container">
+  <!-- Preview Section -->
+  <div class="event-preview-section">
+    <h3 class="section-title">Preview</h3>
+    <div class="event-preview-card">
+      <!-- Event Type -->
+      <div class="preview-event-type" id="preview-type">
+        <%= event.eventType %>
+      </div>
+      
+      <!-- Date and Time -->
+      <div class="preview-event-date" id="preview-date">
+        <%= event.month %> <%= event.day %> <%= event.year %>
+      </div>
+      <div class="preview-event-time" id="preview-time">
+        <%= event.time %>
+      </div>
+      <div class="preview-event-venue" id="preview-venue">
+        <%= event.venue %>
+      </div>
+      
+      <!-- Date Display on Right -->
+      <div class="preview-event-day">
+        <div class="preview-day-number" id="preview-day-number">
+          <%= event.day.toString().padStart(2, '0') %>
+        </div>
+        <div class="preview-month-name" id="preview-month-name">
+          <%= event.month %>
+        </div>
+      </div>
+      
+      <!-- Team Information -->
+      <div class="preview-event-teams">
+        <div class="preview-team" id="preview-team-home">
+          BOUNDLESS FC
+        </div>
+        <div class="preview-team" id="preview-team-away">
+          <%= event.opponent || 'TBD' %>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Edit Form -->
+  <div class="event-form-section">
+    <h3 class="section-title">Edit Event Information</h3>
+    <form action="/events/update/<%= event.slotId %>" method="POST" id="eventForm">
+      <div class="form-group">
+        <label for="title">Event Title<span class="required">*</span></label>
+        <input type="text" id="title" name="title" class="form-control" value="<%= event.title %>" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="eventType">Event Type<span class="required">*</span></label>
+        <select id="eventType" name="eventType" class="form-control" required>
+          <option value="FRIENDLY MATCH" <%= event.eventType === 'FRIENDLY MATCH' ? 'selected' : '' %>>Friendly Match</option>
+          <option value="TUESDAY SESSION" <%= event.eventType === 'TUESDAY SESSION' ? 'selected' : '' %>>Tuesday Session</option>
+          <option value="TOURNAMENT" <%= event.eventType === 'TOURNAMENT' ? 'selected' : '' %>>Tournament</option>
+          <option value="TRAINING" <%= event.eventType === 'TRAINING' ? 'selected' : '' %>>Training</option>
+          <option value="OTHER" <%= event.eventType === 'OTHER' ? 'selected' : '' %>>Other</option>
+        </select>
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group col-date">
+          <label for="day">Day<span class="required">*</span></label>
+          <input type="number" id="day" name="day" class="form-control" min="1" max="31" value="<%= event.day %>" required>
+        </div>
+        
+        <div class="form-group col-date">
+          <label for="month">Month<span class="required">*</span></label>
+          <select id="month" name="month" class="form-control" required>
+            <option value="JAN" <%= event.month === 'JAN' ? 'selected' : '' %>>January</option>
+            <option value="FEB" <%= event.month === 'FEB' ? 'selected' : '' %>>February</option>
+            <option value="MAR" <%= event.month === 'MAR' ? 'selected' : '' %>>March</option>
+            <option value="APR" <%= event.month === 'APR' ? 'selected' : '' %>>April</option>
+            <option value="MAY" <%= event.month === 'MAY' ? 'selected' : '' %>>May</option>
+            <option value="JUN" <%= event.month === 'JUN' ? 'selected' : '' %>>June</option>
+            <option value="JUL" <%= event.month === 'JUL' ? 'selected' : '' %>>July</option>
+            <option value="AUG" <%= event.month === 'AUG' ? 'selected' : '' %>>August</option>
+            <option value="SEP" <%= event.month === 'SEP' ? 'selected' : '' %>>September</option>
+            <option value="OCT" <%= event.month === 'OCT' ? 'selected' : '' %>>October</option>
+            <option value="NOV" <%= event.month === 'NOV' ? 'selected' : '' %>>November</option>
+            <option value="DEC" <%= event.month === 'DEC' ? 'selected' : '' %>>December</option>
+          </select>
+        </div>
+        
+        <div class="form-group col-date">
+          <label for="year">Year<span class="required">*</span></label>
+          <input type="number" id="year" name="year" class="form-control" min="2024" max="2100" value="<%= event.year %>" required>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="time">Time<span class="required">*</span></label>
+        <input type="text" id="time" name="time" class="form-control" placeholder="Example: 14:30" value="<%= event.time %>" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="venue">Venue<span class="required">*</span></label>
+        <input type="text" id="venue" name="venue" class="form-control" value="<%= event.venue %>" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="opponent">Opponent</label>
+        <input type="text" id="opponent" name="opponent" class="form-control" value="<%= event.opponent %>">
+      </div>
+       
+      <div class="form-actions">
+        <button type="submit" class="auth-btn submit-btn">Update</button>
+        <a href="/events/manage" class="auth-btn cancel-btn">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Monitor form input to update preview
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('eventForm');
+    
+    // Initial preview update
+    updatePreview();
+    
+    // Listen for form element changes
+    form.addEventListener('input', updatePreview);
+    
+    function updatePreview() {
+      // Get values
+      const eventType = document.getElementById('eventType').value;
+      const day = document.getElementById('day').value;
+      const month = document.getElementById('month').value;
+      const year = document.getElementById('year').value;
+      const time = document.getElementById('time').value;
+      const venue = document.getElementById('venue').value;
+      const opponent = document.getElementById('opponent').value;
+      
+      // Update preview
+      document.getElementById('preview-type').textContent = eventType;
+      document.getElementById('preview-date').textContent = `${month} ${day} ${year}`;
+      document.getElementById('preview-time').textContent = time;
+      document.getElementById('preview-venue').textContent = venue;
+      document.getElementById('preview-day-number').textContent = day.toString().padStart(2, '0');
+      document.getElementById('preview-month-name').textContent = month;
+      document.getElementById('preview-team-away').textContent = opponent || 'TBD';
+    }
+  });
+</script>

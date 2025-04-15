@@ -1,0 +1,57 @@
+<!-- views/posts/edit.ejs -->
+<div class="container mt-4">
+  <h1 class="mb-4">Edit Article</h1>
+  
+  <% if (locals.messages && messages.error) { %>
+    <div class="alert alert-danger">
+      <%= messages.error %>
+    </div>
+  <% } %>
+  
+  <form action="/posts/update/<%= post._id %>" method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" class="form-control" id="title" name="title" value="<%= post.title %>" required>
+    </div>
+    
+    <div class="mb-3">
+      <label for="content" class="form-label">Content (300 characters max)</label>
+      <textarea class="form-control" id="content" name="content" rows="10" maxlength="300" required><%= post.content %></textarea>
+      <div class="form-text"><span id="chars-left"><%= 300 - post.content.length %></span> characters remaining</div>
+    </div>
+    
+    <div class="mb-3">
+      <label class="form-label">Current Image</label>
+      <div class="mb-2">
+        <img src="<%= post.image %>" alt="<%= post.title %>" class="img-thumbnail" style="max-height: 200px;">
+      </div>
+    </div>
+    
+    <div class="mb-3">
+      <label for="image" class="form-label">New Image (only if changing)</label>
+      <input type="file" class="form-control" id="image" name="image" accept="image/*">
+      <div class="form-text">Recommended size: 1200 x 800 pixels</div>
+    </div>
+    
+    <div class="mb-4">
+      <button type="submit" class="btn btn-primary">Update</button>
+      <a href="/posts/<%= post._id %>" class="btn btn-secondary">Cancel</a>
+    </div>
+  </form>
+</div>
+
+<script>
+  // Character count feature
+  document.getElementById('content').addEventListener('input', function() {
+    const maxLength = 300;
+    const currentLength = this.value.length;
+    const charsLeft = maxLength - currentLength;
+    document.getElementById('chars-left').textContent = charsLeft;
+    
+    if (charsLeft < 0) {
+      document.getElementById('chars-left').classList.add('text-danger');
+    } else {
+      document.getElementById('chars-left').classList.remove('text-danger');
+    }
+  });
+</script>

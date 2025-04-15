@@ -1,0 +1,115 @@
+<!-- views/error.ejs -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> | Boundless FC</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background-color: #121212;
+      color: #e0e0e0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .error-container {
+      max-width: 500px;
+      padding: 40px;
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+    
+    .logo {
+      margin-bottom: 30px;
+    }
+    
+    .logo img {
+      max-width: 100px;
+      height: auto;
+    }
+    
+    .error-title {
+      font-size: 24px;
+      color: #d4af37;
+      margin-bottom: 16px;
+    }
+    
+    .error-message {
+      margin-bottom: 30px;
+      line-height: 1.5;
+    }
+    
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    
+    .primary {
+      background-color: #d4af37;
+      color: #000;
+    }
+    
+    .primary:hover {
+      background-color: #b39020;
+    }
+    
+    .secondary {
+      background-color: #333;
+      color: #fff;
+    }
+    
+    .secondary:hover {
+      background-color: #444;
+    }
+    
+    @media (max-width: 600px) {
+      .button-group {
+        flex-direction: column;
+      }
+      
+      .button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="error-container">
+    <div class="logo">
+      <!-- シンプルなテキストロゴ -->
+      <h2 style="color: #d4af37;">Boundless FC</h2>
+    </div>
+    
+    <h1 class="error-title"><%= title %></h1>
+    <p class="error-message"><%= message %></p>
+    
+    <div class="button-group">
+      <a href="/" class="button primary">ホームに戻る</a>
+      <a href="javascript:history.back()" class="button secondary">前のページ</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,559 @@
+/* responsive-cards.css
+ * ニュースカード、イベントカード、投稿カード、プレビューカードのレスポンシブデザイン
+ */
+
+/* ===== 大画面デバイス用 (1400px以上) ===== */
+@media (min-width: 1401px) {
+  /* ニュースコンテナ */
+  .news-cards-container {
+    justify-content: center;
+  }
+  
+  .news-card {
+    width: 600px;
+    height: 600px;
+  }
+}
+
+/* ===== 大画面〜中型デスクトップ用 (1400px以下) ===== */
+@media (max-width: 1400px) {
+  /* ニュースカードエリア */
+  .news-cards-container {
+    flex-wrap: nowrap; /* 折り返しを無効化 */
+    overflow-x: auto; /* 横スクロールを有効化 */
+    scroll-behavior: smooth; /* スムーズスクロール */
+    scroll-snap-type: x mandatory; /* スクロールスナップ */
+    padding-bottom: 20px; /* スクロールバー用の余白 */
+    -webkit-overflow-scrolling: touch; /* iOSでの滑らかなスクロール */
+    margin: 0 20px;
+  }
+  
+  .news-card {
+    scroll-snap-align: start; /* スクロールスナップポイント */
+    flex: 0 0 auto; /* サイズ固定 */
+    width: 350px; /* カードサイズを少し小さく */
+    height: 550px;
+  }
+  
+  /* スクロールバーをカスタマイズ */
+  .news-cards-container::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  .news-cards-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+  }
+  
+  .news-cards-container::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* ===== PC表示（大画面）では横スクロールを非表示 ===== */
+@media (min-width: 993px) {
+  /* PC用のレイアウト調整 */
+  .news-cards-container {
+    justify-content: center;
+  }
+  
+  /* PCでは横方向のスクロールを無効化 */
+  .news-cards-container::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ===== 大きい画面からタブレットサイズへの対応 (992px以下) ===== */
+@media (max-width: 992px) {
+  /* ニュースセクション */
+  .news-slider-wrapper {
+    width: 100%;
+    padding: 0 20px;
+  }
+  
+  .news-cards-container {
+    gap: 25px;
+    margin-left: 0; /* サイドバーがないので左マージンなし */
+    justify-content: center; /* 中央寄せ */
+  }
+  
+  .news-card {
+    width: calc(50% - 25px); /* 2カラム表示 */
+    height: 450px;
+    max-width: 400px; /* 最大幅を設定 */
+  }
+  
+  /* イベントセクション */
+  .events-container {
+    margin: 0 40px;
+    border-right: 4px solid var(--primary-color);
+    border-left: 4px solid var(--primary-color);
+  }
+  
+  .event-card {
+    min-width: 380px; /* やや小さく */
+  }
+}
+
+/* ===== PC小〜タブレット対応 (768px以下) ===== */
+@media (max-width: 768px) {
+  /* ニュースセクション */
+  .news-slider-wrapper {
+    width: 100%;
+    padding: 0;
+  }
+  
+  .news-cards-container {
+    flex-direction: column; /* 縦に並べる */
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+  }
+  
+  .news-card {
+    width: 100%; /* フル幅 */
+    max-width: 600px; /* 最大幅を制限 */
+    height: 500px;
+  }
+  
+  .news-title h3 {
+    font-size: var(--font-base);
+  }
+  
+  .read-article-btn {
+    padding: 10px 0;
+  }
+  
+  /* イベントセクション */
+  .events-container {
+    margin: 0 40px; /* 余白を減らす */
+    border-right: 3px solid var(--primary-color); /* ボーダーを細く */
+    border-left: 3px solid var(--primary-color);
+  }
+  
+  .event-card {
+    min-width: 250px;
+    height: 350px;
+    padding: 15px;
+  }
+  
+  .day-number {
+    font-size: 4rem;
+  }
+  
+  .month-name {
+    font-size: 2rem;
+  }
+  
+  .team {
+    font-size: var(--font-base);
+  }
+  
+  /* イベントリスト */
+  .event-item-header {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs);
+  }
+  
+  .event-info {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .event-date-display {
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  /* 投稿カード */
+  .post-card {
+    flex-direction: column;
+  }
+  
+  .post-image {
+    width: 100%;
+    height: 200px;
+  }
+  
+  .post-buttons {
+    flex-wrap: wrap;
+  }
+  
+  .view-btn, .edit-btn, .delete-btn {
+    flex: 1;
+  }
+  
+  .post-thumbnail {
+    max-height: 350px;
+  }
+  
+  .post-thumbnail img {
+    max-height: 350px;
+  }
+}
+
+/* ===== スマホサイズ対応 (576px以下) ===== */
+@media (max-width: 576px) {
+  /* ニュースセクション */
+  .news-cards-container {
+    margin: 0 20px;
+    align-items: center;
+  }
+  
+  .news-card {
+    height: 400px; /* 高さを小さく */
+    max-width: 100%; /* 最大幅を画面いっぱいに */
+  }
+  
+  /* イベントセクション */
+  .events-container {
+    margin: 0 25px; /* 余白をさらに減らす */
+    border-width: 2px; /* ボーダーをさらに細く */
+    align-items: center;
+  }
+  
+  .event-card {
+    min-width: 220px;
+    height: 320px;
+    padding: 10px;
+  }
+  
+  .day-number {
+    font-size: 3.5rem;
+  }
+  
+  .month-name {
+    font-size: 1.8rem;
+  }
+  
+  .event-date {
+    font-size: var(--font-sm);
+  }
+  
+  .event-time {
+    font-size: var(--font-sm);
+  }
+  
+  .event-venue {
+    font-size: var(--font-xs);
+  }
+  
+  .team {
+    font-size: var(--font-base);
+  }
+  
+  /* 投稿カード */
+  .post-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .post-thumbnail {
+    max-height: 250px;
+  }
+  
+  .post-thumbnail img {
+    max-height: 250px;
+  }
+  
+  /* 記事リスト */
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .post-card {
+    height: 250px;
+  }
+}/* responsive-cards.css
+ * ニュースカード、イベントカード、投稿カード、プレビューカードのレスポンシブデザイン
+ */
+
+/* ===== 大画面デバイス用 (1400px以上) ===== */
+@media (min-width: 1401px) {
+  /* ニュースコンテナ */
+  .news-cards-container {
+    justify-content: center;
+  }
+  
+  .news-card {
+    width: 600px;
+    height: 600px;
+  }
+}
+
+/* ===== 大画面〜中型デスクトップ用 (1400px以下) ===== */
+@media (max-width: 1400px) {
+  /* ニュースカードエリア */
+  .news-cards-container {
+    flex-wrap: nowrap; /* 折り返しを無効化 */
+    overflow-x: auto; /* 横スクロールを有効化 */
+    scroll-behavior: smooth; /* スムーズスクロール */
+    scroll-snap-type: x mandatory; /* スクロールスナップ */
+    padding-bottom: 20px; /* スクロールバー用の余白 */
+    -webkit-overflow-scrolling: touch; /* iOSでの滑らかなスクロール */
+    margin: 0 20px;
+  }
+  
+  .news-card {
+    scroll-snap-align: start; /* スクロールスナップポイント */
+    flex: 0 0 auto; /* サイズ固定 */
+    width: 350px; /* カードサイズを少し小さく */
+    height: 550px;
+  }
+  
+  /* スクロールバーをカスタマイズ */
+  .news-cards-container::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  .news-cards-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+  }
+  
+  .news-cards-container::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* ===== PC表示（大画面）ではハンバーガーメニューを非表示 ===== */
+@media (min-width: 993px) {
+  /* PC用のレイアウト調整 */
+  .news-cards-container {
+    justify-content: center;
+  }
+  
+  /* PCでは横方向のスクロールを無効化 */
+  .news-cards-container::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ===== 大きい画面からタブレットサイズへの対応 (992px以下) ===== */
+@media (max-width: 992px) {
+  /* ニュースセクション */
+  .news-slider-wrapper {
+    width: 100%;
+    padding: 0 20px;
+  }
+  
+  .news-cards-container {
+    gap: 25px;
+    margin-left: 0; /* サイドバーがないので左マージンなし */
+    justify-content: center; /* 中央寄せ */
+  }
+  
+  .news-card {
+    width: calc(50% - 25px); /* 2カラム表示 */
+    height: 450px;
+    max-width: 400px; /* 最大幅を設定 */
+  }
+  
+  /* イベントセクション */
+  .events-container {
+    margin: 0 40px;
+    border-right: 4px solid var(--primary-color);
+    border-left: 4px solid var(--primary-color);
+  }
+  
+  .event-card {
+    min-width: 380px; /* やや小さく */
+  }
+}
+
+/* ===== PC小〜タブレット対応 (768px以下) ===== */
+@media (max-width: 768px) {
+  /* ニュースセクション */
+  .news-slider-wrapper {
+    width: 100%;
+    padding: 0;
+  }
+  
+  .news-cards-container {
+    flex-direction: column; /* 縦に並べる */
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+  }
+  
+  .news-card {
+    width: 100%; /* フル幅 */
+    max-width: 600px; /* 最大幅を制限 */
+    height: 500px;
+  }
+  
+  .news-title h3 {
+    font-size: var(--font-base);
+  }
+  
+  .read-article-btn {
+    padding: 10px 0;
+  }
+  
+  /* イベントセクション */
+  .events-container {
+    margin: 0 40px; /* 余白を減らす */
+    border-right: 3px solid var(--primary-color); /* ボーダーを細く */
+    border-left: 3px solid var(--primary-color);
+  }
+  
+  .event-card {
+    min-width: 250px;
+    height: 350px;
+    padding: 15px;
+  }
+  
+  .day-number {
+    font-size: 4rem;
+  }
+  
+  .month-name {
+    font-size: 2rem;
+  }
+  
+  .team {
+    font-size: var(--font-base);
+  }
+  
+  /* イベントリスト */
+  .event-item-header {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs);
+  }
+  
+  .event-info {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .event-date-display {
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  /* 投稿カード */
+  .post-card {
+    flex-direction: column;
+  }
+  
+  .post-image {
+    width: 100%;
+    height: 200px;
+  }
+  
+  .post-buttons {
+    flex-wrap: wrap;
+  }
+  
+  .view-btn, .edit-btn, .delete-btn {
+    flex: 1;
+  }
+  
+  .post-thumbnail {
+    max-height: 350px;
+  }
+  
+  .post-thumbnail img {
+    max-height: 350px;
+  }
+}
+
+/* ===== スマホサイズ対応 (576px以下) ===== */
+@media (max-width: 576px) {
+  /* ニュースセクション */
+  .news-cards-container {
+    margin: 0 20px;
+    align-items: center;
+  }
+  
+  .news-card {
+    height: 400px; /* 高さを小さく */
+    max-width: 100%; /* 最大幅を画面いっぱいに */
+  }
+  
+  /* イベントセクション */
+  .events-container {
+    margin: 0 25px; /* 余白をさらに減らす */
+    border-width: 2px; /* ボーダーをさらに細く */
+    align-items: center;
+  }
+  
+  .event-card {
+    min-width: 220px;
+    height: 320px;
+    padding: 10px;
+  }
+  
+  .day-number {
+    font-size: 3.5rem;
+  }
+  
+  .month-name {
+    font-size: 1.8rem;
+  }
+  
+  .event-date {
+    font-size: var(--font-sm);
+  }
+  
+  .event-time {
+    font-size: var(--font-sm);
+  }
+  
+  .event-venue {
+    font-size: var(--font-xs);
+  }
+  
+  .team {
+    font-size: var(--font-base);
+  }
+  
+  /* 投稿管理ページ */
+  .post-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .post-thumbnail {
+    max-height: 250px;
+  }
+  
+  .post-thumbnail img {
+    max-height: 250px;
+  }
+  
+  /* 記事リスト */
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .post-card {
+    height: 250px;
+  }
+}
+
+/* ===== 超小型モバイル (480px以下) ===== */
+@media (max-width: 480px) {
+  /* 投稿管理ページ */
+  .post-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .post-thumbnail {
+    max-height: 250px;
+  }
+  
+  .post-thumbnail img {
+    max-height: 250px;
+  }
+  
+  /* 記事リスト */
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .post-card {
+    height: 250px;
+  }
+}

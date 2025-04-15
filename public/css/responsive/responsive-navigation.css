@@ -1,0 +1,195 @@
+/* responsive-navigation.css
+ * ナビゲーションバー、ハンバーガーメニュー、オフキャンバスメニューのレスポンシブ対応
+ */
+
+/* ===== 大画面デバイス用 (1400px以上) ===== */
+@media (min-width: 1401px) {
+  /* PCでハンバーガーメニュー非表示 */
+  .navbar-toggler, .scroll-toggler {
+    display: none;
+  }
+  
+  .offcanvas.offcanvas-start, #scrollOffcanvasNavbar.offcanvas.offcanvas-start {
+    display: none;
+  }
+  
+  /* PC表示ではスクロールナビゲーションはスクロール位置に応じて表示/非表示 */
+  #scrollNavbar {
+    transition: top var(--transition-speed) ease;
+    top: -100px; /* 初期状態では非表示 */
+  }
+  
+  #scrollNavbar.visible {
+    top: 0; /* 表示状態 */
+  }
+}
+
+/* ===== PC表示（大画面）ではハンバーガーメニューを非表示 ===== */
+@media (min-width: 993px) and (max-width: 1400px) {
+  /* PCでハンバーガーメニュー非表示 */
+  .navbar-toggler, .scroll-toggler {
+    display: none;
+  }
+  
+  .offcanvas.offcanvas-start, #scrollOffcanvasNavbar.offcanvas.offcanvas-start {
+    display: none;
+  }
+  
+  /* オフキャンバスが不適切に表示されないようにする */
+  .offcanvas:not(.show), #scrollOffcanvasNavbar.offcanvas:not(.show) {
+    transform: translateX(-100%);
+    visibility: hidden !important;
+  }
+  
+  /* PCサイズで左セクションのナビゲーションを表示 */
+  .left-section .navbar-collapse,
+  #scrollNavbar .scroll-left-section .navbar-collapse {
+    display: flex !important;
+  }
+}
+
+/* ===== タブレットサイズへの対応 (992px以下) ===== */
+@media (max-width: 992px) {
+  /* スクロールナビゲーション - 常に表示 */
+  #scrollNavbar {
+    top: 0 !important; /* 初期状態から表示 */
+    position: fixed;
+    height: 80px;
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* ナビゲーションバーをグリッドレイアウトに変更 */
+  .navbar-container {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+  }
+  
+  /* ハンバーガーメニューを左側に配置 */
+  .navbar-toggler, .scroll-toggler {
+    display: block !important;
+    grid-column: 1;
+    justify-self: start;
+    margin-left: 10px;
+    margin-right: 0;
+  }
+  
+  /* 通常メニュー非表示 */
+  .main-nav, .scroll-main-nav,
+  #navbarNav, #scrollNavbarNav,
+  .left-section, #scrollNavbar .scroll-left-section {
+    display: none !important;
+  }
+  
+  /* ロゴを中央に配置 */
+  .center-section, .scroll-center-section {
+    grid-column: 2;
+    justify-self: center;
+  }
+  
+  #scrollNavbar .nav-section.scroll-center-section {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  /* 右メニュー/ユーザーアイコンを右側に配置 */
+  .right-section, .right-menu,
+  .scroll-right-section {
+    grid-column: 3;
+    justify-self: end;
+    padding-right: var(--spacing-md);
+  }
+  
+  /* ロゴサイズを小さく */
+  .navbar-logo, .scroll-navbar-logo {
+    height: 45px;
+  }
+  
+  /* タイトルを非表示 */
+  .right-menu h1 {
+    display: none;
+  }
+  
+  /* オフキャンバスメニューが適切に表示・非表示されるよう修正 */
+  .offcanvas-start:not(.show), #scrollOffcanvasNavbar.offcanvas-start:not(.show) {
+    transform: translateX(-100%);
+    visibility: hidden !important;
+  }
+  
+  .offcanvas-backdrop {
+    z-index: 1025;
+  }
+}
+
+/* ===== PC小〜タブレット対応 (768px以下) ===== */
+@media (max-width: 768px) {
+  /* ナビゲーション */
+  #scrollNavbar .scroll-right-section .nav-link.scroll-nav-icon,
+  #Navbar .right-section .nav-link.nav-icon, 
+  #Navbar .right-menu .menu-icon i {
+    font-size: 40px;
+    padding: 0.4rem;
+  }
+  
+  /* サイドメニュー調整 */
+  .offcanvas.offcanvas-start, #scrollOffcanvasNavbar.offcanvas.offcanvas-start {
+    width: 280px;
+    max-width: 80vw;
+  }
+}
+
+/* ===== スマホサイズ対応 (576px以下) ===== */
+@media (max-width: 576px) {
+  /* スクロールナビゲーション */
+  #scrollNavbar, #Navbar {
+    height: 70px;
+  }
+  
+  .navbar-logo, .scroll-navbar-logo {
+    height: 40px;
+  }
+  
+  /* サイドメニュー調整 */
+  .offcanvas.offcanvas-start, #scrollOffcanvasNavbar.offcanvas.offcanvas-start {
+    width: 250px;
+  }
+  
+  /* オフキャンバスメニュー項目の調整 - 通常ナビ */
+  .offcanvas-nav .offcanvas-nav-item .offcanvas-nav-link.sidemenu-item {
+    font-size: var(--font-base);
+    padding: 0.8rem 1.2rem;
+  }
+  
+  /* オフキャンバスメニュー項目の調整 - スクロールナビ */
+  .scroll-offcanvas-nav .scroll-offcanvas-nav-item .scroll-offcanvas-nav-link.sidemenu-item {
+    font-size: var(--font-base);
+    padding: 0.8rem 1.2rem;
+  }
+  
+  /* 右側アイコン調整 - スクロールナビ & 通常ナビ */
+  #scrollNavbar .scroll-right-section .nav-link.scroll-nav-icon,
+  #Navbar .right-section .nav-link.nav-icon,
+  #Navbar .right-menu .menu-icon i {
+    font-size: 28px;
+    padding: var(--spacing-xs);
+  }
+}
+
+/* 左側ナビゲーションを強制的に非表示（モバイル用） */
+@media (max-width: 992px) {
+  /* 重要: これらのルールは非常に具体的で優先度が高いので最後に配置 */
+  .left-section .navbar-collapse,
+  .left-section #navbarNav,
+  #scrollNavbar .scroll-left-section,
+  #scrollNavbar .scroll-left-section .navbar-collapse,
+  #scrollNavbar .scroll-left-section #scrollNavbarNav,
+  .navbar-nav.main-nav,
+  .navbar-nav.scroll-main-nav {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+  }
+}

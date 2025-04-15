@@ -1,0 +1,166 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+
+
+/* 拡張したCSS変数定義 */
+:root {
+    /* カラーパレット */
+    --primary-color: #EFD9A7;
+    --primary-color-dark: #d4c690; /* ホバー時に使用する暗い色 */
+    --primary-color-light: rgba(226, 213, 169, 0.2); /* 透明度がある場合 */
+    --primary-color-30: rgba(226, 213, 169, 0.3); /* 30%透明度 */
+    --dark-color: #000;
+    --light-color: #fff;
+    --text-color: #ccc;
+    --text-muted: #999;
+    --text-light-muted: #777;
+    --gray-color: #808080;
+    --dark-gray: #333;
+    --light-gray: #aaa;
+    
+    /* オーバーレイカラー */
+    --overlay-color: rgba(0, 0, 0, 0.4);
+    --overlay-dark: rgba(0, 0, 0, 0.9);
+    --overlay-card: rgba(30, 30, 30, 0.7);
+    --overlay-input: rgba(0, 0, 0, 0.3);
+    
+    /* アクセントカラー */
+    --danger-color: #e74c3c;
+    --danger-color-light: rgba(231, 76, 60, 0.2);
+    --danger-color-border: rgba(231, 76, 60, 0.3);
+    
+    /* フォント */
+    --main-font: "Roboto", serif;
+    --accent-font: "Racing Sans One", serif;
+    --special-font: "Bruno Ace", serif;
+    
+    /* フォントサイズ */
+    --font-xs: 0.8rem;
+    --font-sm: 0.9rem;
+    --font-base: 1rem;
+    --font-md: 1.1rem;
+    --font-lg: 1.2rem;
+    --font-xl: 1.4rem;
+    --font-2xl: 1.8rem;
+    --font-3xl: 2rem;
+    --font-4xl: 2.5rem;
+    --font-5xl: 3rem;
+    
+    /* サイズ */
+    --sidebar-width: 120px;
+    --nav-height: 100px;
+    
+    /* 間隔 */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* アニメーション */
+    --transition-speed: 0.3s;
+    
+    /* ボーダー */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    
+    /* ボックスシャドウ */
+    --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.4);
+    
+    /* ボーダー */
+    --border-light: 1px solid rgba(255, 255, 255, 0.1);
+    --border-primary: 1px solid rgba(226, 213, 169, 0.2);
+}
+
+
+html {
+  height: 100%;
+}
+
+
+/* 全体のレイアウト */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", serif;
+    overflow-x: hidden;
+}
+
+
+/* スクロール時の背景色設定 */
+body.scrolled,
+body.scrolled .hero-section,
+body.scrolled .home-container,
+body.scrolled .main-content,
+body.scrolled .content-section {
+  background-color: #000000 !important;
+  transition: background-color 0.5s ease;
+}
+
+
+  
+/* スクロール後に一部要素を非表示にする */
+body.scrolled .sidebar-container,
+body.scrolled .social-menu,
+body.scrolled .header-menu {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+
+#news, #events, #about {
+    scroll-margin-top: 400px; /* 値を調整して最適な位置に設定 */
+}

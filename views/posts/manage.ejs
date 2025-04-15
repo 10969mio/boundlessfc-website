@@ -1,0 +1,75 @@
+<!-- views/posts/manage.ejs -->
+<div class="profile-container">
+  <div class="profile-card">
+    <h2 class="profile-title">Article Management</h2>
+    
+    <% if (locals.success && success.length > 0) { %>
+      <div class="alert alert-success"><%= success %></div>
+    <% } %>
+    
+    <% if (locals.error && error.length > 0) { %>
+      <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+    
+    <div class="admin-action-bar">
+      <a href="/posts/create" class="auth-btn">Create New Article</a>
+    </div>
+    
+    <div class="post-list">
+      <% if (posts && posts.length > 0) { %>
+        <% posts.forEach(post => { %>
+          <div class="post-item">
+            <div class="post-thumbnail">
+              <img src="<%= post.image %>" alt="<%= post.title %>">
+            </div>
+            <div class="post-details">
+              <h3><%= post.title %></h3>
+              <p class="post-meta">
+                Posted: <%= new Date(post.createdAt).toLocaleDateString('en-US') %>
+                <% if (post.updatedAt && post.updatedAt > post.createdAt) { %>
+                  | Updated: <%= new Date(post.updatedAt).toLocaleDateString('en-US') %>
+                <% } %>
+              </p>
+              <div class="post-actions">
+                <a href="/posts/<%= post._id %>" class="view-btn">View</a>
+                <a href="/posts/edit/<%= post._id %>" class="edit-btn">Edit</a>
+                <button type="button" class="delete-btn" data-bs-toggle="modal" data-bs-target="#deleteModal<%= post._id %>">
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Delete Confirmation Modal -->
+          <div class="modal fade" id="deleteModal<%= post._id %>" tabindex="-1" aria-labelledby="deleteModalLabel<%= post._id %>" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="deleteModalLabel<%= post._id %>">Confirm Article Deletion</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Are you sure you want to delete "<%= post.title %>"? This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                  <form action="/posts/delete/<%= post._id %>" method="POST">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      <% } else { %>
+        <div class="no-posts">
+          <p>No articles available.</p>
+        </div>
+      <% } %>
+    </div>
+    
+    <div class="profile-actions mt-4">
+      <a href="/auth/profile" class="auth-btn">Return to Profile</a>
+    </div>
+  </div>
+</div>

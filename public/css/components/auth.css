@@ -1,0 +1,245 @@
+/* auth.css - サイズ拡大版 */
+
+.main-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: var(--spacing-lg);
+  }
+  
+  .auth-body {
+      background-color: var(--dark-color);
+      color: var(--light-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+  }
+  
+  /* auth-content と auth-container の幅を広げる */
+  .auth-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 上部から配置 */
+    width: 100%;
+    margin: 0;
+    padding: 50px 0;
+  }
+  
+  /* コンテナの幅制限を緩和 */
+  .auth-container {
+    width: 100%;
+    max-width: 1800px; /* 最大幅を大幅に拡大 */
+    padding: 50px var(--spacing-md);
+    margin-top: 100px;
+  }
+  
+  /* auth-card の幅を調整 */
+  .auth-card {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .auth-title {
+      text-align: center;
+      /* 下マージンを増加 */
+      margin-bottom: var(--spacing-xl);
+      color: var(--primary-color);
+      font-family: var(--special-font);
+      /* フォントサイズを増加 */
+      font-size: var(--font-5xl);
+  }
+  
+  .auth-form .form-group {
+      /* マージンを増加 */
+      margin-bottom: var(--spacing-lg);
+  }
+  
+  .auth-form label {
+      display: block;
+      margin-bottom: 0.7rem;
+      color: var(--primary-color);
+      font-weight: 500;
+      /* フォントサイズを増加 */
+      font-size: var(--font-md);
+  }
+  
+  .auth-form .form-control {
+      width: 100%;
+      /* パディングを増加 */
+      padding: var(--spacing-sm);
+      background-color: var(--overlay-input);
+      border: 1px solid var(--primary-color-30);
+      border-radius: var(--border-radius-md);
+      color: var(--light-color);
+      transition: border-color var(--transition-speed);
+      /* フォントサイズを増加 */
+      font-size: var(--font-md);
+  }
+  
+  .auth-form .form-control:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px var(--primary-color-light);
+  }
+  
+  .auth-actions {
+    margin: var(--spacing-md) 0;
+  }
+  
+  .auth-btn {
+      display: block;
+      width: 100%;
+      /* パディングを増加 */
+      padding: var(--spacing-sm);
+      background-color: var(--primary-color);
+      color: var(--dark-color);
+      border: none;
+      /* 角丸を大きく */
+      border-radius: var(--border-radius-md);
+      /* フォントサイズを増加 */
+      font-size: var(--font-lg);
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all var(--transition-speed);
+      text-align: center;
+      text-decoration: none;
+      margin-bottom: 1.5rem;
+  }
+  
+  .auth-btn:hover {
+      background-color: var(--primary-color-dark);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+  }
+  
+  .auth-links {
+      text-align: center;
+      /* マージンを増加 */
+      margin-top: var(--spacing-lg);
+      color: var(--text-muted);
+      /* フォントサイズを増加 */
+      font-size: var(--font-md);
+  }
+  
+  .auth-links a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: color var(--transition-speed);
+  }
+  
+  .auth-links a:hover {
+      color: var(--light-color);
+      text-decoration: underline;
+  }
+  
+  .alert {
+      /* パディングを増加 */
+      padding: 1.2rem;
+      margin-bottom: var(--spacing-lg);
+      border-radius: var(--border-radius-md);
+      /* フォントサイズを増加 */
+      font-size: var(--font-md);
+  }
+  
+  .alert-danger {
+      background-color: rgba(220, 53, 69, 0.2);
+      color: #ff6b6b;
+      border: 1px solid rgba(220, 53, 69, 0.3);
+  }
+  
+  .alert-success {
+      background-color: rgba(40, 167, 69, 0.2);
+      color: #51cf66;
+      border: 1px solid rgba(40, 167, 69, 0.3);
+  }
+  
+  /* プロフィールページ用スタイル */
+  .profile-container {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: 50px auto;
+  }
+  
+  .profile-card {
+      background-color: var(--overlay-card);
+      /* 角丸を大きく */
+      border-radius: var(--border-radius-lg);
+      /* パディングを増加 */
+      padding: var(--spacing-xl);
+      box-shadow: var(--shadow-lg);
+      border: var(--border-light);
+      margin: 50px 0;
+  }
+  
+  .profile-title {
+      text-align: center;
+      /* マージンを増加 */
+      margin-bottom: var(--spacing-xl);
+      color: var(--primary-color);
+      font-family: var(--special-font);
+      /* フォントサイズを増加 */
+      font-size: var(--font-5xl);
+  }
+  
+  .profile-info {
+      /* マージンを増加 */
+      margin-bottom: var(--spacing-xl);
+  }
+  
+  .profile-info p {
+      /* マージンとパディングを増加 */
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      /* フォントサイズを増加 */
+      font-size: var(--font-md);
+  }
+  
+  .profile-info strong {
+      color: var(--primary-color);
+      margin-right: 0.7rem;
+      /* フォントサイズを増加 */
+      font-size: var(--font-lg);
+  }
+  
+  .profile-actions {
+      display: flex;
+      justify-content: center;
+      /* ギャップを増加 */
+      gap: 1.5rem;
+  }
+  
+  /* 管理者メニュー用スタイル */
+  .admin-menu {
+      background-color: var(--primary-color-light);
+      /* パディングを増加 */
+      padding: var(--spacing-lg);
+      border-radius: var(--border-radius-md);
+      /* マージンを増加 */
+      margin: var(--spacing-lg) 0;
+      border-left: 4px solid var(--primary-color);
+  }
+  
+  .admin-menu h4 {
+      color: var(--primary-color);
+      /* マージンを増加 */
+      margin-bottom: 1.5rem;
+      font-family: var(--special-font);
+      /* フォントサイズを増加 */
+      font-size: var(--font-xl);
+  }
+  
+  .admin-actions {
+      display: flex;
+      flex-direction: column;
+      /* ギャップを増加 */
+      gap: var(--spacing-sm);
+  }
+  
+  .admin-actions .auth-btn {
+      margin-bottom: 0;
+  }
+  
+  

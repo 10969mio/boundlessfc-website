@@ -1,0 +1,123 @@
+/* ヘッダーメニューの基本設定 */
+.header-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* 黒背景部分（ログインアイコン用） */
+  .top-menu-bg-2 {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 90px;  /* アイコンに合わせてコンパクトに */
+    height: 90px; /* 白背景と同じ高さに */
+    background-color: var(--overlay-dark);
+    backdrop-filter: blur(3px);
+    z-index: 1;
+  }
+  
+  /* メニュー内の要素配置 */
+  .top-menu {
+    display: flex;
+    top: 0;
+    right: 0;
+    align-items: center;
+    justify-content: flex-end;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    padding: 25px 0; /* 上下の余白を調整 */
+  }
+  
+  /* タイトルテキスト */
+  .top-menu h1 {
+    color: var(--primary-color);
+    font-size: var(--font-4xl); /* フォントサイズを調整 */
+    font-family: var(--special-font);
+    font-weight: 400;
+    margin: 0;
+    padding-right: 25px; /* ログインアイコンとの間隔 */
+    letter-spacing: 0.5px; /* 文字間隔を少し広く */
+  }
+  
+  /* ログインアイコン */
+  .menu-icon {
+    color: var(--light-color);
+    font-size: var(--font-5xl); /* アイコンサイズを調整 */
+    transition: transform var(--transition-speed) ease;
+    opacity: 0.9;
+    padding-right: 25px; /* 左右の余白を調整 */
+  }
+  
+  /* ログインアイコンのホバー効果 */
+  .menu-icon:hover {
+    transform: scale(1.1);
+    opacity: 1;
+    color: var(--primary-color);
+  }
+  
+  /* ヒーローセクション関連のレイアウト */
+  .hero-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+  }
+  
+  .background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .hero-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1; /* 背景にするため */
+  }
+  
+  .responsive-hero-title {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scaleY(4.0);
+    color: rgba(239, 217, 167, 0.5);
+    font-size: 165px;
+    font-weight: 700;
+    text-align: center;
+    z-index: 5;
+    width: 100%;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-family: var(--special-font);
+  }
+  
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-color);  /* 黒の半透明オーバーレイ */
+    z-index: 1;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    color: rgb(18, 19, 19);
+    text-align: center;
+    padding-top: 40vh; /* 高さの調整 */
+  }
+  
+  

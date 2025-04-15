@@ -1,0 +1,347 @@
+/* post-details.css - プロフィールデザインに合わせた高級感のあるスタイル */
+
+/* 記事詳細ページ全体のスタイル */
+.post-detail-page {
+  background-color: var(--dark-color);
+  color: var(--primary-color);
+  padding: 2rem 0 4rem;
+  font-family: var(--main-font);
+}
+
+/* メインコンテナ */
+.post-detail-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  background-color: var(--overlay-card);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: var(--border-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 記事タイトル */
+.post-detail-title {
+  text-align: center;
+  font-size: var(--font-5xl);
+  color: var(--primary-color);
+  font-family: var(--special-font);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--primary-color-light);
+  width: 100%;
+  word-wrap: break-word; /* タイトルが長い場合に折り返す */
+}
+
+/* 記事画像コンテナ */
+.post-image-container {
+  width: 100%;
+  margin-bottom: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  max-height: 600px;
+}
+
+/* 記事画像 */
+.post-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  max-height: 600px;
+}
+
+/* 投稿情報 */
+.post-meta {
+  background-color: var(--overlay-input);
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--spacing-lg);
+  color: #a99e6b;
+  text-align: center;
+  border-left: 4px solid var(--primary-color);
+  width: 100%;
+  box-sizing: border-box; /* ボックスサイズを正確に計算 */
+}
+
+/* 記事内容のコンテナ - 中央配置に修正 */
+.post-detail-content-wrapper {
+  width: 100%;
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  overflow: hidden; /* コンテンツが溢れないようにする */
+  max-width: 800px; /* 最大幅を制限 */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 記事内容 - 中央表示に修正 */
+.post-detail-content {
+  display: block; /* ブロック要素として表示 */
+  text-align: left; /* テキスト自体は左揃え */
+  font-size: var(--font-md);
+  line-height: 1.8;
+  color: var(--text-color);
+  padding: 1.5rem 2rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto; /* 左右の余白を自動で均等に */
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius-md);
+  position: relative; /* 位置指定のため */
+}
+
+/* 区切り線 */
+.content-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--primary-color-30), transparent);
+  width: 80%;
+  margin: var(--spacing-lg) auto;
+  clear: both; /* フロートをクリア */
+}
+
+/* ボタングループ */
+.post-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap; /* スマホサイズで折り返す */
+}
+
+/* ボタン共通スタイル */
+.post-btn {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: var(--dark-color);
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--border-radius-md);
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all var(--transition-speed) ease;
+  border: none;
+  cursor: pointer;
+  font-size: var(--font-base);
+  text-align: center;
+  min-width: 150px;
+}
+
+.post-btn:hover {
+  background-color: var(--primary-color-dark);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+/* 削除ボタン */
+.post-btn.delete-btn {
+  background-color: var(--danger-color-light);
+  color: var(--danger-color);
+  border: 1px solid var(--danger-color-border);
+}
+
+.post-btn.delete-btn:hover {
+  background-color: rgba(231, 76, 60, 0.3);
+}
+
+/* コメントセクション */
+.comments-section {
+  margin-top: var(--spacing-lg);
+  width: 100%;
+  clear: both; /* 前の要素からのフロートをクリア */
+}
+
+.comments-title {
+  font-size: var(--font-3xl);
+  color: var(--primary-color);
+  font-family: var(--special-font);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* コメントフォーム */
+.comment-form-container {
+  background-color: rgba(20, 20, 20, 0.8);
+  border: var(--border-primary);
+  border-radius: var(--border-radius-md);
+  padding: 1.5rem;
+  margin-bottom: var(--spacing-lg);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.comment-prompt {
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-lg);
+}
+
+.comment-textarea {
+  width: 100%;
+  background-color: var(--overlay-input);
+  border: 1px solid var(--primary-color-30);
+  color: var(--light-color);
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--spacing-sm);
+  resize: vertical;
+  min-height: 100px;
+  box-sizing: border-box;
+}
+
+.comment-textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-color-light);
+}
+
+.comment-submit {
+  background-color: var(--primary-color);
+  color: var(--dark-color);
+  border: none;
+  border-radius: var(--border-radius-md);
+  padding: 0.8rem 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.comment-submit:hover {
+  background-color: var(--primary-color-dark);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+/* コメントリスト */
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* コメントカード */
+.comment-card {
+  background-color: rgba(20, 20, 20, 0.8);
+  border: var(--border-primary);
+  border-radius: var(--border-radius-md);
+  padding: 1.5rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--primary-color-light);
+}
+
+.comment-author {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.comment-date {
+  color: var(--text-muted);
+  font-size: var(--font-sm);
+}
+
+.comment-content {
+  color: var(--text-color);
+  line-height: 1.6;
+  word-wrap: break-word; /* 長い単語も折り返す */
+}
+
+.comment-actions {
+  margin-top: var(--spacing-sm);
+  text-align: right;
+}
+
+.delete-comment-btn {
+  background-color: var(--danger-color-light);
+  color: var(--danger-color);
+  border: 1px solid var(--danger-color-border);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-sm);
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.delete-comment-btn:hover {
+  background-color: rgba(231, 76, 60, 0.3);
+}
+
+/* ログインプロンプト */
+.login-prompt {
+  background-color: rgba(20, 20, 20, 0.8);
+  border: var(--border-primary);
+  border-radius: var(--border-radius-md);
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--text-color);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.login-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+/* コメントなしメッセージ */
+.no-comments {
+  text-align: center;
+  color: var(--text-muted);
+  padding: var(--spacing-lg);
+  background-color: rgba(20, 20, 20, 0.5);
+  border-radius: var(--border-radius-md);
+  border: 1px dashed var(--primary-color-light);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* モーダル */
+.modal-content {
+  background-color: #1e1e1e;
+  border: 1px solid var(--dark-gray);
+  border-radius: var(--border-radius-md);
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--dark-gray);
+  background-color: #1a1a1a;
+}
+
+.modal-title {
+  color: var(--primary-color);
+}
+
+.modal-body {
+  color: var(--text-color);
+}
+
+.modal-footer {
+  border-top: 1px solid var(--dark-gray);
+  background-color: #1a1a1a;
+}
+
+.btn-close {
+  filter: invert(1);
+}
+

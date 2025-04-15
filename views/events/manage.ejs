@@ -1,0 +1,42 @@
+<!-- views/events/manage.ejs -->
+<div class="admin-controls">
+  <a href="/events/reset" class="danger-btn" onclick="return confirm('全てのイベントデータがリセットされます。よろしいですか？');">データリセット</a>
+</div>
+
+<div class="events-list">
+  <% if (events && events.length > 0) { %>
+    <% events.forEach(function(event) { %>
+      <div class="event-item">
+        <div class="event-item-header">
+          <h3>Event Slots <%= event.slotId %></h3>
+          <a href="/events/edit/<%= event.slotId %>" class="edit-btn">EDIT</a>
+        </div>
+        <div class="event-item-content">
+          <div class="event-info">
+            <div class="event-date-display">
+              <div class="event-day-number"><%= event.day %></div>
+              <div class="event-month-name"><%= event.month %></div>
+            </div>
+            <div class="event-details-info">
+              <div class="event-type-name"><%= event.eventType %></div>
+              <div class="event-item-title"><%= event.title %></div>
+              <div class="event-time-info"><%= event.time %></div>
+              <div class="event-venue-info"><%= event.venue %></div>
+            </div>
+          </div>
+          <% if (event.opponent && event.opponent.length > 0) { %>
+            <div class="event-opponent-info">Opponent: <%= event.opponent %></div>
+          <% } %>
+          <% if (event.description && event.description.length > 0) { %>
+            <div class="event-description-text"><%= event.description %></div>
+          <% } %>
+          <div class="event-update-date">
+            Last update: <%= new Date(event.updateDate).toLocaleDateString('ja-JP') %>
+          </div>
+        </div>
+      </div>
+    <% }); %>
+  <% } else { %>
+    <p class="no-events-message">Event data not found</p>
+  <% } %>
+</div>

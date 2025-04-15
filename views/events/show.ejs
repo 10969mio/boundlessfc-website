@@ -1,0 +1,64 @@
+<!-- views/events/show.ejs -->
+<div class="event-detail-container">
+  <% if (locals.success && success.length > 0) { %>
+    <div class="alert alert-success"><%= success %></div>
+  <% } %>
+
+  <div class="event-detail-card">
+    <h1 class="event-detail-title"><%= event.title %></h1>
+    
+    <div class="event-meta">
+      <p class="event-date">
+        <i class="bi bi-calendar-event"></i>
+        <%= new Date(event.dateTime).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'}) %>
+      </p>
+      <p class="event-location">
+        <i class="bi bi-geo-alt"></i>
+        <%= event.location %>
+      </p>
+    </div>
+    
+    <% if (event.description && event.description.length > 0) { %>
+      <div class="event-description">
+        <h2>Event Details</h2>
+        <p><%= event.description %></p>
+      </div>
+    <% } %>
+    
+    <div class="event-detail-actions">
+      <a href="/events" class="back-btn">
+        <i class="bi bi-arrow-left"></i> Back to Events List
+      </a>
+      
+      <% if (locals.user && user.role === 'admin') { %>
+        <div class="admin-actions">
+          <a href="/events/edit/<%= event._id %>" class="edit-btn">Edit</a>
+          <button type="button" class="delete-btn" data-bs-toggle="modal" data-bs-target="#deleteEventModal">
+            Delete
+          </button>
+        </div>
+        
+        <!-- Delete Confirmation Modal -->
+        <div class="modal fade" id="deleteEventModal" tabindex="-1" aria-labelledby="deleteEventModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deleteEventModalLabel">Confirm Event Deletion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Are you sure you want to delete "<%= event.title %>"? This action cannot be undone.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form action="/events/delete/<%= event._id %>" method="POST">
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>

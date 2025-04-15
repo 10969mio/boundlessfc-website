@@ -1,0 +1,72 @@
+/* responsive-sidebar.css
+ * サイドバー、ヘッダーメニュー、ソーシャルメニューのレスポンシブ対応
+ */
+
+/* ===== 大きい画面からタブレットサイズへの対応 (992px以下) ===== */
+@media (max-width: 992px) {
+  /* サイドバーとヘッダー関連（992px以下で非表示） */
+  body .sidebar-container,
+  body.scrolled .sidebar-container {
+    /* 位置プロパティと表示プロパティを組み合わせて確実に非表示 */
+    position: absolute;
+    left: -9999px;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  body .header-menu,
+  body.scrolled .header-menu,
+  body .social-menu,
+  body.scrolled .social-menu {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+/* ===== PC小〜タブレット対応 (768px以下) ===== */
+@media (max-width: 768px) {
+  /* サイドバーとヘッダー関連を非表示 */
+  body .sidebar-container,
+  body.scrolled .sidebar-container {
+    position: absolute;
+    left: -9999px;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  body .header-menu,
+  body.scrolled .header-menu,
+  body .social-menu,
+  body.scrolled .social-menu {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+/* ===== スマホサイズ対応 (576px以下) ===== */
+@media (max-width: 576px) {
+  /* サイドバーとヘッダー関連を非表示 */
+  body .sidebar-container,
+  body.scrolled .sidebar-container {
+    position: absolute;
+    left: -9999px;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  body .header-menu,
+  body.scrolled .header-menu,
+  body .social-menu,
+  body.scrolled .social-menu {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+  }
+}

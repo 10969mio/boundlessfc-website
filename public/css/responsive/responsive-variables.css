@@ -1,0 +1,46 @@
+/* responsive-variables.css
+ * レスポンシブデザイン向けの変数・ミックスイン定義
+ */
+
+ :root {
+  /* ブレークポイント変数 */
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1400px;
+}
+
+/* 各メディアクエリで使用する変数を定義
+ * これらはCSSファイル内で直接使用することはできませんが、
+ * 開発者がブレークポイントの値を確認するための参照として役立ちます
+ */
+
+/*
+ * メディアクエリの使用法:
+ * 
+ * 大画面デバイス (1401px以上)
+ * @media (min-width: 1401px) { ... }
+ *
+ * 大画面〜中型デスクトップ (1400px以下)
+ * @media (max-width: 1400px) { ... }
+ *
+ * PC表示用 (993px以上)
+ * @media (min-width: 993px) { ... }
+ *
+ * タブレットサイズ (992px以下)
+ * @media (max-width: 992px) { ... }
+ *
+ * タブレット〜モバイル (768px以下)
+ * @media (max-width: 768px) { ... }
+ *
+ * スマホサイズ (576px以下)
+ * @media (max-width: 576px) { ... }
+ *
+ * 小型スマホサイズ (480px以下)
+ * @media (max-width: 480px) { ... }
+ *
+ * 印刷用スタイル
+ * @media print { ... }
+ */

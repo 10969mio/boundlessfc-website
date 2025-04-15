@@ -1,0 +1,29 @@
+/* SNSメニューのスタイル */
+.social-menu {
+    position: fixed;
+    right: 10px;
+    top: 150px; /* 位置調整 */
+    display: flex;
+    flex-direction: column;
+    gap: 50px; /* アイコン間の間隔を広げる */
+    z-index: 1000;
+    padding: var(--spacing-md) var(--spacing-xs); /* パディングを微調整 */
+  }
+  
+  .social-icon {
+    color: var(--light-color);
+    font-size: var(--font-3xl); 
+    opacity: 0.8;
+    transition: all var(--transition-speed) ease;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .social-icon:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    color: var(--primary-color);
+  }
+  

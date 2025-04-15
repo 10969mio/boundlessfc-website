@@ -1,0 +1,242 @@
+/* responsive-pages.css
+ * ホームページ、Aboutページ、投稿一覧ページ、イベント一覧ページなど特定ページのレスポンシブ対応
+ */
+
+/* ===== 大きい画面からタブレットサイズへの対応 (992px以下) ===== */
+@media (max-width: 992px) {
+  /* Aboutセクション */
+  .about-container {
+    margin: 0 var(--spacing-lg);
+    padding: 0;
+    justify-content: center;
+  }
+  
+  .about-section,
+  .about-section.reverse {
+    flex-direction: column !important; /* 縦並びに強制 */
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .about-image-container,
+  .about-content {
+    max-width: 100%;
+    width: 100%;
+    padding: var(--spacing-sm);
+  }
+  
+  .about-image-container {
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .about-content h3 {
+    font-size: var(--font-2xl);
+  }
+  
+  /* 投稿管理ページ */
+  .posts-manage-container {
+    padding: var(--spacing-sm);
+  }
+  
+  .manage-title {
+    font-size: var(--font-3xl);
+  }
+  
+  .manage-subtitle {
+    font-size: var(--font-base);
+  }
+}
+
+/* ===== PC小〜タブレット対応 (768px以下) ===== */
+@media (max-width: 768px) {
+  /* Aboutセクション */
+  .jp-title {
+    font-size: var(--font-3xl);
+  }
+  
+  .about-container {
+    justify-content: center;
+  }
+  
+  .about-header {
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  /* 投稿一覧ページ */
+  .posts-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .create-btn {
+    margin-top: var(--spacing-md);
+  }
+  
+  .post-card {
+    height: 300px;
+  }
+  
+  .post-title {
+    font-size: var(--font-base);
+  }
+  
+  .post-date {
+    font-size: var(--font-xs);
+  }
+  
+  .read-more-btn {
+    padding: 8px 0;
+    font-size: var(--font-xs);
+  }
+  
+  /* 投稿管理ページ */
+  .manage-actions {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .action-btn {
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* 投稿詳細ページ */
+  .post-detail-container {
+    padding: 1.5rem;
+  }
+  
+  .post-detail-title {
+    font-size: var(--font-3xl);
+  }
+  
+  .post-actions {
+    flex-direction: column;
+  }
+  
+  .post-btn {
+    width: 100%;
+  }
+  
+  .post-detail-content {
+    padding: var(--spacing-sm);
+  }
+  
+  .post-image-container {
+    max-height: 400px;
+  }
+  
+  .post-image {
+    max-height: 400px;
+  }
+}
+
+/* ===== スマホサイズ対応 (576px以下) ===== */
+@media (max-width: 576px) {
+  /* Aboutセクション */
+  .about-container {
+    margin: 0 var(--spacing-md);
+    padding: var(--spacing-xs) 0;
+    align-items: center;
+  }
+  
+  .about-header {
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .jp-title {
+    font-size: var(--font-2xl);
+  }
+  
+  .en-title {
+    font-size: var(--font-base);
+  }
+  
+  .about-content h3 {
+    font-size: var(--font-xl);
+  }
+  
+  .about-content p {
+    font-size: var(--font-sm);
+  }
+  
+  /* 装飾的な要素を調整 */
+  .left-image::before,
+  .right-image::after {
+    width: 60px;
+    height: 60px;
+  }
+  
+  /* 投稿詳細ページ */
+  .post-detail-title {
+    font-size: var(--font-2xl);
+  }
+  
+  .post-detail-content {
+    font-size: var(--font-base);
+    padding: var(--spacing-sm);
+  }
+  
+  .comments-title {
+    font-size: var(--font-xl);
+  }
+  
+  .comment-prompt {
+    font-size: var(--font-base);
+  }
+  
+  .post-image-container {
+    max-height: 300px;
+  }
+  
+  .post-image {
+    max-height: 300px;
+  }
+  
+  .comment-form-container,
+  .comment-card {
+    padding: var(--spacing-sm);
+  }
+  
+  /* 投稿一覧ページ */
+  .page-header h1 {
+    font-size: var(--font-3xl);
+  }
+  
+  .posts-container {
+    padding: var(--spacing-sm);
+  }
+
+}
+
+/* ===== 超小型モバイル (480px以下) ===== */
+@media (max-width: 480px) {
+  /* 投稿一覧ページ */
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .post-card {
+    height: 250px;
+  }
+  
+  .page-header h1 {
+    font-size: var(--font-3xl);
+  }
+  
+  .posts-container {
+    padding: var(--spacing-sm);
+  }
+  
+  /* 投稿管理ページ */
+  .manage-title {
+    font-size: var(--font-3xl);
+  }
+  
+  .manage-subtitle {
+    font-size: var(--font-base);
+  }
+}

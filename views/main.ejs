@@ -1,0 +1,35 @@
+<div class="home-container">
+    <!-- 背景セクション -->
+    <section class="hero-section">
+        <!-- 背景動画または画像を設定 -->
+        <div class="hero-background">
+            <div class="video-overlay"></div>
+            <div class="responsive-hero-title">BOUNDLESS FC</div>
+            <video autoplay muted loop class="background-video">
+                <source src="videos/background.mp4" type="video/mp4">
+            </video>
+        </div>
+    </section>
+
+    <!-- メインコンテンツセクション -->
+    <div class="content-section">
+        <div>
+            <!-- スライダーセクション -->
+            <div class="news-slider-wrapper">
+            <%- include('partials/news-slider') %>
+            </div>
+                        
+            <!-- イベントセクション -->
+            <div class="events-wrapper">
+            <%- include('partials/event-info') %>
+            </div>
+
+            <!-- チーム紹介セクション -->
+            <div class="aboutus-wrapper">
+            <%- include('partials/aboutus') %>
+            </div>
+        </div>
+    </div>
+
+</div>
+

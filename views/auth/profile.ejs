@@ -1,0 +1,36 @@
+<!-- views/auth/profile.ejs -->
+<div class="profile-container">
+  <div class="profile-card">
+    <h2 class="profile-title">PROFILE</h2>
+    
+    <% if (locals.success && success.length > 0) { %>
+      <div class="alert alert-success"><%= success %></div>
+    <% } %>
+    
+    <div class="profile-info">
+      <p><strong>Username:</strong> <%= user.username %></p>
+      <p><strong>Email:</strong> <%= user.email %></p>
+      
+      <% if (user.role === 'admin') { %>
+        <p><strong>Authorization:</strong> <%= user.role === 'admin' ? 'ADMIN' : '一般ユーザー' %></p>
+        
+       <!-- views/auth/profile.ejs の管理者メニュー部分 -->
+        <div class="admin-menu">
+          <h4>Admin Menu</h4>
+          <div class="admin-actions">
+            <a href="/posts/create" class="auth-btn">Create New Article</a>
+            <a href="/posts/manage" class="auth-btn">Article Listing Management</a>
+            <a href="/events/manage" class="auth-btn">Manage Events</a>
+          </div>
+        </div>
+      <% } %>
+      
+    </div>
+    
+    <div class="profile-actions">
+      <a href="/" class="auth-btn">HOME</a>
+      <a href="/auth/profile/edit" class="auth-btn">EDIT</a>
+      <a href="/auth/logout" class="auth-btn">LOGOUT</a>
+    </div>
+  </div>
+</div>

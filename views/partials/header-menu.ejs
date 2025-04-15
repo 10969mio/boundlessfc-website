@@ -1,0 +1,17 @@
+<div class="header-menu">
+
+    <div class="top-menu">
+        <h1>Boundless FC</h1>
+        <% if (locals.user) { %>
+            <!-- ログイン済みの場合 -->
+            <a href="/auth/profile" class="menu-icon">
+                <i class="bi bi-person-fill"></i>
+            </a>
+        <% } else { %>
+            <!-- 未ログインの場合 -->
+            <a href="/auth/login" class="menu-icon">
+                <i class="bi bi-person"></i>
+            </a>
+        <% } %>
+    </div>
+</div>

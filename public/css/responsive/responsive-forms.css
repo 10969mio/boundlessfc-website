@@ -1,0 +1,302 @@
+/* responsive-forms.css
+ * 認証フォーム、投稿作成・編集フォーム、イベント編集フォーム、コメントフォームのレスポンシブ対応
+ */
+
+/* ===== PC小〜タブレット対応 (768px以下) ===== */
+@media (max-width: 768px) {
+  /* 認証ページ */
+  .auth-container {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+  
+  .auth-title {
+    font-size: var(--font-4xl);
+  }
+  
+  .profile-card {
+    padding: var(--spacing-lg);
+  }
+  
+  .auth-form label,
+  .auth-form .form-control {
+    font-size: var(--font-base);
+  }
+  
+  .auth-btn {
+    font-size: var(--font-base);
+  }
+  
+  .profile-title {
+    font-size: var(--font-4xl);
+  }
+  
+  /* イベント編集ページ */
+  .event-edit-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .preview-event-day {
+    position: static;
+    margin-bottom: 15px;
+    display: inline-block;
+  }
+  
+  .preview-event-teams {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .event-preview-card {
+    min-width: auto;
+    padding: var(--spacing-md);
+  }
+  
+  .preview-day-number {
+    font-size: 6rem;
+  }
+  
+  .preview-month-name {
+    font-size: 2.5rem;
+  }
+  
+  /* 記事作成フォーム */
+  .create-post-container {
+    padding: var(--spacing-md);
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .create-post-container h1 {
+    font-size: var(--font-4xl);
+  }
+  
+  .form-group label {
+    font-size: var(--font-base);
+  }
+  
+  .form-control {
+    font-size: var(--font-base);
+  }
+}
+
+/* ===== スマホサイズ対応 (576px以下) ===== */
+@media (max-width: 576px) {
+  /* 認証ページ */
+  .auth-form label,
+  .auth-form .form-control {
+    font-size: var(--font-base);
+  }
+  
+  .auth-btn {
+    font-size: var(--font-base);
+  }
+  
+  .profile-title {
+    font-size: var(--font-4xl);
+  }
+  
+  /* イベント編集ページ */
+  .event-preview-card {
+    min-height: 350px;
+    padding: var(--spacing-sm);
+  }
+  
+  .preview-day-number {
+    font-size: 5rem;
+  }
+  
+  .preview-month-name {
+    font-size: 2rem;
+  }
+  
+  #preview-team-home {
+    font-size: 1.5rem;
+  }
+  
+  #preview-team-away {
+    font-size: var(--font-base);
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  /* 記事作成フォーム */
+  .create-post-container {
+    padding: var(--spacing-sm);
+  }
+  
+  .create-post-container h1 {
+    font-size: var(--font-3xl);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .image-preview img {
+    max-height: 300px;
+  }
+  
+  .submit-btn, .cancel-btn {
+    padding: var(--spacing-sm);
+    font-size: var(--font-base);
+  }
+}/* responsive-forms.css
+ * 認証フォーム、投稿作成・編集フォーム、イベント編集フォーム、コメントフォームのレスポンシブ対応
+ */
+
+/* ===== 大きい画面からタブレットサイズへの対応 (992px以下) ===== */
+@media (max-width: 992px) {
+  /* 認証ページ調整 */
+  .auth-container {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+  
+  .auth-title {
+    font-size: var(--font-4xl);
+  }
+  
+  .profile-card {
+    padding: var(--spacing-lg);
+  }
+  
+  /* イベント編集ページの調整 */
+  .event-edit-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .preview-event-day {
+    position: static;
+    margin-bottom: 15px;
+    display: inline-block;
+  }
+  
+  .preview-event-teams {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* ===== PC小〜タブレット対応 (768px以下) ===== */
+@media (max-width: 768px) {
+  /* 認証ページ */
+  .auth-form label,
+  .auth-form .form-control {
+    font-size: var(--font-base);
+  }
+  
+  .auth-btn {
+    font-size: var(--font-base);
+  }
+  
+  .profile-title {
+    font-size: var(--font-4xl);
+  }
+  
+  /* イベント編集ページ */
+  .event-preview-card {
+    min-width: auto;
+    padding: var(--spacing-md);
+  }
+  
+  .preview-day-number {
+    font-size: 6rem;
+  }
+  
+  .preview-month-name {
+    font-size: 2.5rem;
+  }
+  
+  /* 記事作成フォーム */
+  .create-post-container {
+    padding: var(--spacing-md);
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .create-post-container h1 {
+    font-size: var(--font-4xl);
+  }
+  
+  .form-group label {
+    font-size: var(--font-base);
+  }
+  
+  .form-control {
+    font-size: var(--font-base);
+  }
+}
+
+/* ===== スマホサイズ対応 (576px以下) ===== */
+@media (max-width: 576px) {
+  /* 認証ページ */
+  .auth-form label,
+  .auth-form .form-control {
+    font-size: var(--font-base);
+  }
+  
+  .auth-btn {
+    font-size: var(--font-base);
+  }
+  
+  .profile-title {
+    font-size: var(--font-4xl);
+  }
+  
+  /* イベント編集ページ */
+  .event-preview-card {
+    min-height: 350px;
+    padding: var(--spacing-sm);
+  }
+  
+  .preview-day-number {
+    font-size: 5rem;
+  }
+  
+  .preview-month-name {
+    font-size: 2rem;
+  }
+  
+  #preview-team-home {
+    font-size: 1.5rem;
+  }
+  
+  #preview-team-away {
+    font-size: var(--font-base);
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  /* 記事作成フォーム */
+  .create-post-container {
+    padding: var(--spacing-sm);
+  }
+  
+  .create-post-container h1 {
+    font-size: var(--font-3xl);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .image-preview img {
+    max-height: 300px;
+  }
+  
+  .submit-btn, .cancel-btn {
+    padding: var(--spacing-sm);
+    font-size: var(--font-base);
+  }
+}

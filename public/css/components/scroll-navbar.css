@@ -1,0 +1,221 @@
+/* スクロールナビゲーションバーの基本スタイル */
+#scrollNavbar {
+  background-color: var(--dark-color);
+  padding: 0;
+  transition: top var(--transition-speed) ease;
+  top: -100px; /* 初期状態では画面外に配置 */
+  height: var(--nav-height);
+  z-index: 1030;
+  width: 100%;
+}
+
+#scrollNavbar.visible {
+  top: 0; /* 表示状態 */
+}
+
+/* 3セクション分割レイアウト - スクロールナビゲーション用 */
+#scrollNavbar .navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0;
+  position: relative;
+  width: 100%;
+}
+
+#scrollNavbar .nav-section {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* 左セクション（メニュー） - スクロールナビゲーション用 */
+#scrollNavbar .scroll-left-section {
+  flex: 1;
+  justify-content: flex-start;
+  padding-left: var(--spacing-md);
+  order: 1;
+}
+
+/* 左側にナビゲーションを強制配置 - スクロールナビゲーション用 */
+#scrollNavbarNav, #scrollNavbar .navbar-collapse {
+  display: flex !important;
+  width: auto !important;
+}
+
+#scrollNavbar .scroll-main-nav {
+  display: flex;
+  gap: 1rem;
+  margin-right: auto;
+  margin-left: 0;
+}
+
+/* 中央セクション（ロゴ） - スクロールナビゲーション用 */
+#scrollNavbar .scroll-center-section {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  order: 2;
+}
+
+/* 右セクション（ユーザーアイコン） - スクロールナビゲーション用 */
+#scrollNavbar .scroll-right-section {
+  flex: 1;
+  justify-content: flex-end;
+  padding-right: var(--spacing-md);
+  order: 3;
+}
+
+/* ロゴ - スクロールナビゲーション用 */
+#scrollNavbar .scroll-navbar-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#scrollNavbar .scroll-navbar-logo {
+  height: 55px;
+  width: auto;
+  transition: height var(--transition-speed) ease;
+}
+
+/* ナビゲーションリンク - スクロールナビゲーション用 */
+#scrollNavbar .scroll-main-nav .scroll-main-nav-item .scroll-main-nav-link {
+  color: var(--light-color);
+  font-family: var(--special-font);
+  transition: color var(--transition-speed) ease;
+  position: relative;
+  display: inline-block;
+  padding: 0.7rem 1.2rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+#scrollNavbar .scroll-main-nav .scroll-main-nav-item .scroll-main-nav-link:hover {
+  color: var(--primary-color) !important;
+  text-decoration: none;
+}
+
+/* リンクの下線エフェクト - スクロールナビゲーション用 */
+#scrollNavbar .scroll-main-nav .scroll-main-nav-item .scroll-main-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: all var(--transition-speed) ease;
+  transform: translateX(-50%);
+}
+
+#scrollNavbar .scroll-main-nav .scroll-main-nav-item .scroll-main-nav-link:hover::after {
+  width: 100%;
+}
+
+/* 右側アイコン - スクロールナビゲーション用 */
+#scrollNavbar .scroll-right-section .nav-link.scroll-nav-icon {
+  color: var(--light-color);
+  font-size: 50px;
+  display: inline-block;
+  padding: 0.5rem;
+  transition: all var(--transition-speed) ease;
+}
+
+#scrollNavbar .scroll-right-section .nav-link.scroll-nav-icon:hover {
+  color: var(--primary-color) !important;
+  transform: scale(1.05);
+}
+
+/* オフキャンバスメニュー - スクロールナビゲーション用 */
+#scrollOffcanvasNavbar.offcanvas.offcanvas-start {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  width: 300px;
+  max-width: 80vw;
+  z-index: 1040;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%); /* 初期状態では隠す */
+  visibility: hidden;
+  transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+#scrollOffcanvasNavbar.offcanvas.offcanvas-start.show {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+#scrollOffcanvasNavbar .scroll-offcanvas-header {
+  border-bottom: 1px solid var(--dark-gray);
+  padding: 1rem 1.5rem;
+}
+
+#scrollOffcanvasNavbar .offcanvas-title {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin: 0;
+}
+
+#scrollOffcanvasNavbar .btn-close.btn-close-dark {
+  opacity: 0.8;
+}
+
+#scrollOffcanvasNavbar .btn-close.btn-close-dark:hover {
+  opacity: 1;
+}
+
+/* ハンバーガーメニューを白色に設定 - スクロールナビゲーション用 */
+#scrollNavbar .scroll-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* ハンバーガーメニューのボタン枠線を透明に - スクロールナビゲーション用 */
+#scrollNavbar .scroll-toggler {
+  border-color: transparent;
+}
+
+/* フォーカス時のアウトラインを削除 - スクロールナビゲーション用 */
+#scrollNavbar .scroll-toggler:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+/* オフキャンバスメニューのスタイル - スクロールナビゲーション用 */
+#scrollNavbar .scroll-offcanvas-nav .scroll-offcanvas-nav-item .scroll-offcanvas-nav-link.sidemenu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--light-color);
+  padding: 1rem 1.5rem;
+  font-size: var(--font-md);
+  text-transform: uppercase;
+  transition: all var(--transition-speed) ease;
+}
+
+#scrollNavbar .scroll-offcanvas-nav .scroll-offcanvas-nav-item .scroll-offcanvas-nav-link.sidemenu-item:hover {
+  color: var(--primary-color);
+  padding-left: 2rem;
+}
+
+#scrollNavbar .scroll-offcanvas-nav .scroll-offcanvas-nav-item .scroll-offcanvas-nav-link.sidemenu-item i {
+  margin-left: auto;
+  transition: transform var(--transition-speed) ease;
+}
+
+#scrollNavbar .scroll-offcanvas-nav .scroll-offcanvas-nav-item .scroll-offcanvas-nav-link.sidemenu-item:hover i {
+  transform: translateX(5px);
+  color: var(--primary-color);
+}
+
+#scrollNavbar .scroll-offcanvas-body .scroll-offcanvas-nav-link.sidemenu-item:hover i {
+  transform: translateX(5px);
+  color: var(--primary-color);
+}
+

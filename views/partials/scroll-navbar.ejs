@@ -1,0 +1,75 @@
+<!-- views/partials/scroll-navbar.ejs -->
+<nav class="navbar navbar-expand-lg fixed-top" id="scrollNavbar">
+  <div class="container-fluid navbar-container">
+    <!-- ハンバーガーメニュー -->
+    <button class="navbar-toggler scroll-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#scrollOffcanvasNavbar" aria-controls="scrollOffcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- オフキャンバスメニュー - スクロールナビゲーション用 -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="scrollOffcanvasNavbar" aria-labelledby="scrollOffcanvasNavbarLabel">
+      <div class="offcanvas-header scroll-offcanvas-header">
+        <h5 class="offcanvas-title" id="scrollOffcanvasNavbarLabel">MENU</h5>
+        <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body scroll-offcanvas-body">
+        <ul class="navbar-nav scroll-offcanvas-nav">
+          <li class="nav-item scroll-offcanvas-nav-item">
+            <a class="nav-link scroll-offcanvas-nav-link sidemenu-item" href="/">HOME <i class="bi bi-chevron-right"></i></a>
+          </li>
+          <li class="nav-item scroll-offcanvas-nav-item">
+            <a class="nav-link scroll-offcanvas-nav-link sidemenu-item" href="#news">BLOG <i class="bi bi-chevron-right"></i></a>
+          </li>
+          <li class="nav-item scroll-offcanvas-nav-item">
+            <a class="nav-link scroll-offcanvas-nav-link sidemenu-item" href="#events">EVENTS <i class="bi bi-chevron-right"></i></a>
+          </li>
+          <li class="nav-item scroll-offcanvas-nav-item">
+            <a class="nav-link scroll-offcanvas-nav-link sidemenu-item" href="#aboutus">ABOUT US <i class="bi bi-chevron-right"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 左側メニュー項目 -->
+    <div class="nav-section left-section scroll-left-section">
+      <div class="collapse navbar-collapse" id="scrollNavbarNav">
+        <ul class="navbar-nav scroll-main-nav">
+          <li class="nav-item scroll-main-nav-item">
+            <a class="nav-link scroll-main-nav-link" href="/">HOME</a>
+          </li>
+          <li class="nav-item scroll-main-nav-item">
+            <a class="nav-link scroll-main-nav-link" href="#news">BLOG</a>
+          </li>
+          <li class="nav-item scroll-main-nav-item">
+            <a class="nav-link scroll-main-nav-link" href="#events">EVENTS</a>
+          </li>
+          <li class="nav-item scroll-main-nav-item">
+            <a class="nav-link scroll-main-nav-link" href="#aboutus">ABOUT US</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 中央ロゴ -->
+    <div class="nav-section center-section scroll-center-section">
+      <a class="navbar-brand scroll-navbar-brand" href="/">
+        <img src="/images/Logo.png" alt="Boundless FC" class="navbar-logo scroll-navbar-logo">
+      </a>
+    </div>
+
+    <!-- 右側アイコン -->
+    <div class="nav-section right-section scroll-right-section">
+      <% if (locals.user) { %>
+        <!-- ログイン済みの場合 -->
+        <a href="/auth/profile" class="nav-link nav-icon scroll-nav-icon">
+            <i class="bi bi-person-fill"></i>
+        </a>
+      <% } else { %>
+        <!-- 未ログインの場合 -->
+        <a href="/auth/login" class="nav-link nav-icon scroll-nav-icon">
+            <i class="bi bi-person"></i>
+        </a>
+      <% } %>
+    </div>
+  </div>
+</nav>

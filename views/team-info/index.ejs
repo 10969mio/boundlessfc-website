@@ -1,0 +1,93 @@
+<!-- views/team-info/index.ejs -->
+<div class="container mt-4">
+    <h1 class="mb-4">チーム紹介</h1>
+    
+    <% if (locals.messages && messages.success) { %>
+      <div class="alert alert-success">
+        <%= messages.success %>
+      </div>
+    <% } %>
+    
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card mb-4">
+          <div class="card-header bg-primary text-white">
+            <h2 class="fs-4 mb-0"><%= teamInfo.name %></h2>
+          </div>
+          <div class="card-body">
+            <h3 class="fs-5">チームについて</h3>
+            <p class="mb-4"><%= teamInfo.about %></p>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <h3 class="fs-5">基本情報</h3>
+                <ul class="list-group mb-4">
+                  <li class="list-group-item">
+                    <strong>設立:</strong> <%= teamInfo.established %>年
+                  </li>
+                  <li class="list-group-item">
+                    <strong>ホームグラウンド:</strong> <%= teamInfo.homeGround %>
+                  </li>
+                  <li class="list-group-item">
+                    <strong>練習時間:</strong> <%= teamInfo.practiceTime %>
+                  </li>
+                  <li class="list-group-item">
+                    <strong>代表者:</strong> <%= teamInfo.representative %>
+                  </li>
+                  <li class="list-group-item">
+                    <strong>連絡先:</strong> <%= teamInfo.contact %>
+                  </li>
+                </ul>
+              </div>
+              
+              <div class="col-md-6">
+                <h3 class="fs-5">ユニフォーム</h3>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="card mb-3">
+                      <div class="card-header text-center">ホーム</div>
+                      <img src="<%= teamInfo.uniformHome || '/images/default-uniform.jpg' %>" 
+                           class="card-img-top" alt="ホームユニフォーム">
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="card mb-3">
+                      <div class="card-header text-center">アウェイ</div>
+                      <img src="<%= teamInfo.uniformAway || '/images/default-uniform.jpg' %>" 
+                           class="card-img-top" alt="アウェイユニフォーム">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <% if (locals.user && user.role === 'admin') { %>
+              <div class="mt-4">
+                <a href="/team-info/edit" class="btn btn-warning">チーム情報を編集</a>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <!-- サイドバーコンテンツ -->
+        <div class="card mb-4">
+          <div class="card-header">最新情報</div>
+          <div class="card-body">
+            <a href="/posts" class="btn btn-outline-primary w-100 mb-2">チームブログ</a>
+            <a href="/events" class="btn btn-outline-primary w-100">イベント情報</a>
+          </div>
+        </div>
+        
+        <!-- SNSリンク（後ほど実装） -->
+        <div class="card">
+          <div class="card-header">SNS</div>
+          <div class="card-body">
+            <p class="text-center">SNSでも情報発信中！</p>
+            <!-- ここにSNSリンクが入ります -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,260 @@
+/* イベント編集ページのスタイル */
+
+/* プレビューセクションとフォームセクションの調整 */
+.event-preview-section,
+.event-form-section {
+  width: 100%;
+  padding: var(--spacing-md);
+  box-sizing: border-box;
+}
+
+/* box-sizing を全要素に適用 */
+* {
+  box-sizing: border-box;
+}
+
+.event-edit-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 均等な列幅 */
+  gap: 30px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.section-title {
+  color: var(--primary-color);
+  font-size: var(--font-lg);
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--primary-color-light);
+  padding-bottom: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* プレビューセクション */
+/* トーナメントカードスタイル - 画像のデザインに合わせて */
+.event-preview-card {
+  position: relative;
+  min-width: 425px;
+  min-height: 400px;
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  position: relative;
+  box-shadow: var(--shadow-md);
+  border-radius: 0; /* 角丸をなくす */
+}
+
+/* 左右の金色のボーダー */
+.event-preview-card::before,
+.event-preview-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-color: var(--primary-color);
+}
+
+.event-preview-card::before {
+  left: 0;
+}
+
+.event-preview-card::after {
+  right: 0;
+}
+
+/* プレビューセクション全体 */
+.event-preview-section {
+  background-color: transparent; /* 背景を透明に */
+  padding: 0; /* パディングを削除 */
+  box-shadow: none; /* 影を削除 */
+}
+
+/* タイトルを非表示 */
+.section-title {
+  display: none;
+}
+
+/* イベントタイプのスタイル */
+.preview-event-type {
+  font-size: var(--font-lg);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--light-color);
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+
+/* 日時情報のスタイル */
+.preview-event-date {
+  font-size: var(--font-md);
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.preview-event-time {
+  font-size: var(--font-base);
+  margin: 5px 0;
+  color: var(--light-color);
+}
+
+.preview-event-venue {
+  font-size: var(--font-base);
+  color: var(--light-color);
+  margin-bottom: 25px;
+}
+
+/* 大きな日付表示のスタイル - 中央配置 */
+.preview-event-day {
+  position: static; /* 絶対配置をやめる */
+  margin: 40px 0;
+  text-align: left;
+  display: block;
+}
+
+.preview-day-number {
+  font-size: 8rem;
+  font-weight: 700;
+  line-height: 0.8;
+  color: var(--primary-color);
+  display: inline-block;
+}
+
+.preview-month-name {
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  margin-left: 10px;
+  display: inline-block;
+}
+
+/* チーム情報のスタイル - タイトルと対戦相手 */
+.preview-event-teams {
+  margin-top: auto;
+  border-top: none; /* 上部の境界線を削除 */
+  display: block; /* フレックスをブロックに変更 */
+}
+
+#preview-team-home {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+
+#preview-team-away {
+  font-size: var(--font-lg);
+  color: var(--light-color);
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+/* カップ名/対戦相手の表示がない場合 */
+#preview-team-away:empty::before {
+  content: "TBD";
+}
+
+/* フォームセクション */
+.event-form-section {
+  width: 100%;
+  background-color: var(--overlay-card);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--dark-gray);
+}
+
+.form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  color: var(--primary-color);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.required {
+  color: var(--danger-color);
+  margin-left: 4px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--overlay-input);
+  border: 1px solid var(--primary-color-30);
+  border-radius: var(--border-radius-md);
+  color: var(--light-color);
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+  font-size: 0.95rem;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-color-light);
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: var(--spacing-md);
+}
+
+.col-date {
+  flex: 1;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.auth-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-base);
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  display: inline-block;
+}
+
+.submit-btn {
+  background-color: var(--primary-color);
+  color: var(--dark-color);
+  border: none;
+}
+
+.cancel-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--light-color);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.submit-btn:hover {
+  background-color: var(--primary-color-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.cancel-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+

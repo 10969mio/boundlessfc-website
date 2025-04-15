@@ -1,0 +1,108 @@
+/* responsive-layout.css
+ * 全体のレイアウト調整、コンテナやグリッド、フッターの基本的なレスポンシブ調整
+ */
+
+/* ===== 大画面デバイス用 (1400px以上) ===== */
+@media (min-width: 1401px) {
+  /* レイアウト調整 */
+  .container {
+    max-width: 1400px;
+  }
+  
+  .posts-container,
+  .post-detail-container {
+    max-width: 1000px;
+  }
+}
+
+/* ===== 大きい画面からタブレットサイズへの対応 (992px以下) ===== */
+@media (max-width: 992px) {
+  /* メインコンテンツの調整（サイドバーがないため） */
+  .main-content {
+    margin: 0;
+  }
+  
+  .content-section {
+    margin-top: 1000px; /* ナビゲーションバーの高さ分だけ確保 */
+  }
+  
+  /* セクションタイトル */
+  .section-title {
+    text-align: center;
+    padding-left: 0;
+  }
+  
+  /* ALL CONTENTSリンク */
+  .all-contents-container {
+    padding-right: 20px;
+  }
+}
+
+/* ===== PC小〜タブレット対応 (768px以下) ===== */
+@media (max-width: 768px) {
+  /* メインコンテンツの調整 */
+  .content-section {
+    margin-top: 800px; /* 必要に応じて調整 */
+  }
+  
+  /* セクションタイトル */
+  .section-title {
+    font-size: 1.6rem;
+  }
+  
+  /* ALL CONTENTSリンク */
+  .all-contents-container {
+    justify-content: center;
+    padding-right: 0;
+  }
+  
+  .all-contents-container a {
+    margin-right: 0;
+  }
+}
+
+/* ===== スマホサイズ対応 (576px以下) ===== */
+@media (max-width: 576px) {
+  /* メインコンテンツの調整 */
+  .content-section {
+    margin-top: 600px; /* スマホでは少し上にずらす */
+  }
+  
+  /* セクションタイトル */
+  .section-title {
+    font-size: var(--font-xl);
+    padding: 0 15px;
+    margin-bottom: var(--spacing-md);
+  }
+}
+
+/* ===== 印刷用スタイル ===== */
+@media print {
+  body {
+    background-color: white;
+    color: black;
+  }
+  
+  .no-print {
+    display: none;
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: none;
+  }
+  
+  header, footer, nav, sidebar, .social-menu {
+    display: none;
+  }
+  
+  .main-content {
+    margin: 0;
+    padding: 0;
+  }
+}

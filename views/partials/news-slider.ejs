@@ -1,0 +1,57 @@
+<!-- views/partials/news-slider.ejs - リンク部分のみ修正 -->
+<div id="news" class="news-slider-wrapper">
+  <div class="news-slider">
+    <div class="news-cards-container">
+      <!-- カード1 -->
+      <div class="news-card" style="background-image: url('<%= locals.latestPosts && latestPosts[0] && latestPosts[0].image ? latestPosts[0].image : "/images/news1.jpg" %>')">
+        <div class="news-overlay"></div>
+        <div class="news-content">
+          <div class="news-title">
+            <h3><%= locals.latestPosts && latestPosts[0] ? latestPosts[0].title : "Latest futsal session!" %></h3>
+          </div>
+          <a href="/posts/<%= locals.latestPosts && latestPosts[0] ? latestPosts[0]._id : '#' %>" class="read-article-btn">READ ARTICLE</a>
+        </div>
+      </div>
+
+      <!-- カード2 -->
+      <div class="news-card" style="background-image: url('<%= locals.latestPosts && latestPosts[1] && latestPosts[1].image ? latestPosts[1].image : "/images/news2.jpg" %>')">
+        <div class="news-overlay"></div>
+        <div class="news-content">
+          <div class="news-title">
+            <h3><%= locals.latestPosts && latestPosts[1] ? latestPosts[1].title : "Our new jersey!!" %></h3>
+          </div>
+          <a href="/posts/<%= locals.latestPosts && latestPosts[1] ? latestPosts[1]._id : '#' %>" class="read-article-btn">READ ARTICLE</a>
+        </div>
+      </div>
+
+      <!-- カード3 -->
+      <div class="news-card" style="background-image: url('<%= locals.latestPosts && latestPosts[2] && latestPosts[2].image ? latestPosts[2].image : "/images/news3.jpg" %>')">
+        <div class="news-overlay"></div>
+        <div class="news-content">
+          <div class="news-title">
+            <h3><%= locals.latestPosts && latestPosts[2] ? latestPosts[2].title : "Warera no captain FUYUKAI MUKAI" %></h3>
+          </div>
+          <a href="/posts/<%= locals.latestPosts && latestPosts[2] ? latestPosts[2]._id : '#' %>" class="read-article-btn">READ ARTICLE</a>
+        </div>
+      </div>
+
+      <!-- カード4 -->
+      <div class="news-card" style="background-image: url('<%= locals.latestPosts && latestPosts[3] && latestPosts[3].image ? latestPosts[3].image : "/images/news4.jpg" %>')">
+        <div class="news-overlay"></div>
+        <div class="news-content">
+          <div class="news-title">
+            <h3><%= locals.latestPosts && latestPosts[3] ? latestPosts[3].title : "BOUNDLESS CUP!!" %></h3>
+          </div>
+          <a href="/posts/<%= locals.latestPosts && latestPosts[3] ? latestPosts[3]._id : '#' %>" class="read-article-btn">READ ARTICLE</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="all-contents-container">
+      <a href="/posts">
+        ALL CONTENTS
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>

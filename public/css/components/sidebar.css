@@ -1,0 +1,124 @@
+/* サイドバーのコンテナ */
+.sidebar-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    z-index: 1000;
+  }
+  
+  /* 透明な背景レイヤー */
+  .sidebar-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-width);
+    height: 100%;
+    background-color: var(--overlay-dark);
+    backdrop-filter: blur(3px);
+  }
+  
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 2;  /* backgroundより上に表示 */
+    display: flex;
+    flex-direction: column;  /* 縦方向に並べる */
+    align-items: center;  /* 中央揃え */
+  }
+  
+  /* コンテンツレイヤー */
+  .sidebar-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;  /* アイテム間の間隔 */
+  }
+  
+  .logo {
+    width: 100px;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    opacity: 1 !important; /* 強制的に不透明化 */
+  }
+  
+  .logo-item {
+    padding-top: 10px;
+  }
+  
+  /* メニュー項目 */
+  .menu-item {
+    position: relative;
+    padding: 30px 0;
+    text-align: center;
+    cursor: pointer;
+    display: flex;           /* Flexboxを使用 */
+    justify-content: center; /* 水平方向の中央揃え */
+    transition: transform var(--transition-speed) ease;
+  }
+  
+  /* ホバー効果 */
+  .menu-item:hover {
+    transform: scale(1.1); /* 1.1倍に拡大 */
+  }
+  
+  /* アイコンを囲むボックスの設定 */
+  .icon-box {
+    position: relative;
+    color: var(--gray-color);
+    transition: all var(--transition-speed) ease;
+    display: flex;          /* Flexboxを使用 */
+    justify-content: center; /* 水平方向の中央揃え */
+    align-items: center;     /* 垂直方向の中央揃え */
+  }
+  
+  /* アイコン自体の設定 */
+  .icon-box i {
+    color: var(--light-color);
+    font-size: var(--font-4xl);      /* アイコンのサイズ */
+    transition: color 0.5s ease, transform 0.5s ease; /* アニメーション */
+  }
+  
+  /* ホバー時のアイコン色変更 */
+  .menu-item:hover .icon-box i {
+    color: var(--primary-color); 
+    transform: scale(1.3);
+  }
+  
+  /* ホバー時に表示されるテキスト（続き） */
+.menu-text {
+    font-size: var(--font-3xl);
+    font-family: var(--special-font);
+    position: absolute;    /* メニュー項目からの絶対位置 */
+    left: 120%;           /* アイコンの右側に配置 */
+    top: 50%;             /* 垂直方向の中央に */
+    transform: translateY(-50%); /* 正確な中央揃え */
+    background: var(--overlay-dark); /* 半透明の黒背景 */
+    color: var(--light-color);         /* テキストを白に */
+    padding: 5px 15px;    /* 内側の余白 */
+    border-radius: var(--border-radius-sm);   /* 角を丸く */
+    white-space: nowrap;  /* テキストを一行に */
+    opacity: 0;           /* 初期状態は非表示 */
+    transition: opacity var(--transition-speed); /* 表示/非表示のアニメーション */
+    pointer-events: none; /* マウスイベントを無効化 */
+    z-index: 10;          /* 他の要素より前面に */
+  }
+  
+  .menu-text a {
+    color: var(--light-color);
+    text-decoration: none;
+  }
+  
+  /* ホバー時のツールチップ表示 */
+  .menu-item:hover .menu-text {
+    opacity: 1;           /* 完全に表示 */
+  }
+  
+  

@@ -1,0 +1,57 @@
+<!-- views/partials/event-info.ejs - 修正版 -->
+<div id="events" class="events-section">
+    <div class="events-container">
+        <% if (locals.eventSlots && eventSlots.length > 0) { %>
+            <% eventSlots.forEach(event => { %>
+                <!-- イベントカード -->
+                <div class="event-card">
+                    <div class="event-header">
+                        <!-- ロゴ -->
+                        <div class="league-logo">
+                            <%= event.eventType || 'EVENT' %>
+                        </div>
+
+                        <!-- 日付と時間 -->
+                        <div class="event-datetime">
+                            <div class="event-date"><%= event.month || 'JAN' %> <%= event.day || '1' %> <%= event.year || '2025' %></div>
+                            <div class="event-time"><%= event.time || '00:00' %></div>
+                            <div class="event-venue"><%= event.venue || 'TBD' %></div>
+                        </div>
+                    </div>
+
+                    <!-- 大きな日付表示 -->
+                    <div class="event-day">
+                        <% 
+                            const day = event.day || 1;
+                            const dayString = typeof day === 'number' ? day.toString() : String(day);
+                            const paddedDay = dayString.padStart(2, '0');
+                        %>
+                        <span class="day-number"><%= paddedDay %></span>
+                        <span class="month-name"><%= event.month || 'JAN' %></span>
+                    </div>
+
+                    <!-- 対戦カード -->
+                    <div class="event-teams">
+                        <% if (event.opponent && event.opponent !== '') { %>
+                            <div class="team home-team">BOUNDLESS FC</div>
+                            <div class="team away-team"><%= event.opponent %></div>
+                        <% } else { %>
+                            <% 
+                                const title = event.title || 'BOUNDLESS FC';
+                                const parts = title.split(' ');
+                                const firstPart = parts[0] || 'BOUNDLESS';
+                                const restParts = parts.slice(1).join(' ') || 'FC';
+                            %>
+                            <div class="team home-team"><%= firstPart %></div>
+                            <div class="team away-team"><%= restParts %></div>
+                        <% } %>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <div class="no-events">
+                <p>現在予定されているイベントはありません</p>
+            </div>
+        <% } %>
+    </div>
+</div>
