@@ -6,3 +6,11 @@ public/uploads/
 .env.test
 .env.production
 .DS_Store
+logs/
+logs/*.log
+public/images/*.jpg
+public/images/*.jpeg
+public/images/*.png
+public/videos/*.mp4
+!public/images/placeholder.jpg
+!public/images/logo.png

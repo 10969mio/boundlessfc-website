@@ -2,13 +2,19 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
     try {
-        const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/boundlessfc-website');
+        // 環境変数の存在確認
+        const mongoUri = process.env.MONGODB_URI;
+        if (!mongoUri) {
+            console.error("環境変数 MONGODB_URI が設定されていません");
+            process.exit(1); // エラーが発生した場合はプロセスを終了
+        }
+        
+        const conn = await mongoose.connect(mongoUri);
         console.log(`MongoDB Connected: ${conn.connection.host}`);
     } catch (error) {
-        console.error(`Error: ${error.message}`);
-        process.exit(1);  // エラーが発生した場合はプロセスを終了
+        console.error(`MongoDB接続エラー: ${error.message}`);
+        process.exit(1); // エラーが発生した場合はプロセスを終了
     }
 };
 
 module.exports = connectDB;
-

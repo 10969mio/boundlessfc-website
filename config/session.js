@@ -2,10 +2,23 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
 module.exports = (app) => {
+  // 環境変数の存在確認
+  const sessionSecret = process.env.SESSION_SECRET;
+  if (!sessionSecret) {
+    console.error("環境変数 SESSION_SECRET が設定されていません");
+    process.exit(1);
+  }
+
+  const mongoUri = process.env.MONGODB_URI;
+  if (!mongoUri) {
+    console.error("環境変数 MONGODB_URI が設定されていません");
+    process.exit(1);
+  }
+
   // セッション管理
   const sessionConfig = {
     name: 'boundless_session', // デフォルト名からの変更でセッションハイジャック防止
-    secret: process.env.SESSION_SECRET || 'your-secret-key',
+    secret: sessionSecret,
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -16,8 +29,8 @@ module.exports = (app) => {
     },
     // MongoDB セッションストアの設定
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/boundlessfc-website',
-      ttl: 24 * 60 * 60, // セッションの有効期限（1日）- 既存設定に合わせています
+      mongoUrl: mongoUri,
+      ttl: 24 * 60 * 60, // セッションの有効期限（1日）
       autoRemove: 'native' // 期限切れセッションの自動削除
     })
   };

@@ -8,11 +8,6 @@ exports.getAllPosts = async (req, res) => {
   try {
     const posts = await Post.find().sort({ createdAt: -1 }).populate('author', 'username');
     
-    // デバッグ用：画像URLを確認
-    posts.forEach(post => {
-      console.log('Post image URL:', post.image);
-    });
-    
     // HTMLビューをレンダリング
     res.render('posts/index', { 
       title: 'Articles List', 
@@ -43,15 +38,6 @@ exports.getPostById = async (req, res) => {
         layout: 'layouts/blog' // blog.ejsレイアウトを使用
       });
     }
-    
-    // デバッグ用：個別記事の画像URLを確認
-    console.log('Single post image details:', {
-      id: post._id,
-      title: post.title,
-      image: post.image,
-      imageType: typeof post.image,
-      imagePublicId: post.imagePublicId
-    });
     
     // 承認済みコメントを取得
     const comments = await Comment.find({ 
@@ -99,14 +85,6 @@ exports.editPostForm = async (req, res) => {
       });
     }
     
-    // デバッグ用：編集する記事の画像情報
-    console.log('Editing post image details:', {
-      id: post._id,
-      title: post.title,
-      image: post.image,
-      imagePublicId: post.imagePublicId
-    });
-    
     res.render('posts/edit', { 
       title: 'Edit Article', 
       post: post,
@@ -125,25 +103,7 @@ exports.editPostForm = async (req, res) => {
 // 新規記事の投稿（フォーム送信処理）
 exports.createPost = async (req, res) => {
   try {
-    console.log('=== CREATE POST DEBUG ===');
-    console.log('Form data:', req.body);
-    console.log('File exists:', !!req.file);
-    
-    if (req.file) {
-      console.log('File details:', {
-        originalname: req.file.originalname,
-        mimetype: req.file.mimetype,
-        size: req.file.size,
-        path: req.file.path,
-        filename: req.file.filename,
-      });
-      
-      // req.fileの全プロパティを表示
-      console.log('All file properties:', Object.keys(req.file));
-      console.log('File object:', JSON.stringify(req.file, null, 2));
-    }
-    
-    // 以下は既存のコード
+    // 新しい記事オブジェクトを作成
     const newPost = new Post({
       title: req.body.title,
       content: req.body.content,
@@ -151,41 +111,16 @@ exports.createPost = async (req, res) => {
     });
 
     if (req.file) {
-      // URLプロパティの存在チェック
-      const hasSecureUrl = !!req.file.secure_url;
-      const hasUrl = !!req.file.url;
-      const hasPath = !!req.file.path;
-      
-      console.log('URL properties:', { hasSecureUrl, hasUrl, hasPath });
-      
-      // 実際のURL値を表示
-      if (hasSecureUrl) console.log('secure_url:', req.file.secure_url);
-      if (hasUrl) console.log('url:', req.file.url);
-      if (hasPath) console.log('path:', req.file.path);
-      
-      // 存在するプロパティを使用
+      // 画像がアップロードされた場合
       newPost.image = req.file.secure_url || req.file.url || req.file.path || '';
       newPost.imagePublicId = req.file.public_id || req.file.filename || '';
-      
-      console.log('Assigned image URL:', newPost.image);
-      console.log('Assigned image public ID:', newPost.imagePublicId);
     } else {
-      // デフォルト画像のCloudinary URL
-      newPost.image = '/images/news1.jpg';
-      console.log('Using default image:', newPost.image);
+      // デフォルト画像のパス
+      newPost.image = '/images/placeholder.jpg';
     }
-
-    // 保存前の記事オブジェクトを表示
-    console.log('Post object before save:', newPost);
     
     // データベースに保存
     const savedPost = await newPost.save();
-    console.log('Saved post to database:', {
-      id: savedPost._id,
-      title: savedPost.title,
-      image: savedPost.image,
-      imagePublicId: savedPost.imagePublicId
-    });
     
     req.flash('success', 'Article has been created');
     res.redirect('/posts');
@@ -199,10 +134,6 @@ exports.createPost = async (req, res) => {
 // 記事を更新（フォーム送信処理）
 exports.updatePost = async (req, res) => {
   try {
-    // リクエストのデバッグ
-    console.log('Update request body:', req.body);
-    console.log('Update uploaded file:', JSON.stringify(req.file, null, 2));
-    
     // 更新するフィールドを取得
     const updateData = {
       title: req.body.title,
@@ -216,36 +147,20 @@ exports.updatePost = async (req, res) => {
       return res.redirect('/posts');
     }
     
-    // 現在の画像情報をログ出力
-    console.log('Current post image details:', {
-      id: post._id,
-      image: post.image,
-      imagePublicId: post.imagePublicId
-    });
-    
     // 画像ファイルがアップロードされた場合
     if (req.file) {
-      // ファイルプロパティの確認
-      console.log('Update file properties:', Object.keys(req.file));
-      
       // 古い画像をCloudinaryから削除（もし存在すれば）
       if (post.imagePublicId) {
         try {
-          console.log('Deleting old image:', post.imagePublicId);
           await cloudinary.uploader.destroy(post.imagePublicId);
         } catch (cloudinaryError) {
           console.error('An error occurred while deleting the old image:', cloudinaryError);
         }
       }
       
-      // 新しい画像のパスを設定（multer-storage-cloudinaryの形式に合わせて修正）
+      // 新しい画像のパスを設定
       updateData.image = req.file.secure_url || req.file.url || req.file.path || '';
       updateData.imagePublicId = req.file.public_id || req.file.filename || '';
-      
-      console.log('New image information:', {
-        url: updateData.image,
-        publicId: updateData.imagePublicId
-      });
     }
     
     // データベースの記事を更新
@@ -255,7 +170,6 @@ exports.updatePost = async (req, res) => {
       { new: true }
     );
     
-    console.log('Updated article:', updatedPost);
     req.flash('success', 'Article has been updated');
     res.redirect(`/posts/${updatedPost._id}`);
   } catch (error) {
@@ -279,7 +193,6 @@ exports.deletePost = async (req, res) => {
     // Cloudinaryから画像を削除（もし存在すれば）
     if (post.imagePublicId) {
       try {
-        console.log('Article deletion: Deleting image:', post.imagePublicId);
         await cloudinary.uploader.destroy(post.imagePublicId);
       } catch (cloudinaryError) {
         console.error('An error occurred while deleting the image:', cloudinaryError);
@@ -308,19 +221,6 @@ exports.getLatestPosts = async (req, res, next) => {
       .sort({ createdAt: -1 })
       .limit(6)
       .populate('author', 'username');
-    
-    // さらに詳細なデバッグ情報
-    console.log('=== Latest Posts Debug Info ===');
-    console.log('Total latest posts found:', latestPosts.length);
-    
-    latestPosts.forEach((post, index) => {
-      console.log(`Post ${index} (${post._id}):`);
-      console.log(` - Title: ${post.title}`);
-      console.log(` - Image URL: ${post.image}`);
-      console.log(` - Image URL Type: ${typeof post.image}`);
-      console.log(` - Image exists: ${post.image ? 'Yes' : 'No'}`);
-      console.log(` - Image Public ID: ${post.imagePublicId || 'Not set'}`);
-    });
     
     // res.localsに格納してビューで使えるようにする
     res.locals.latestPosts = latestPosts;

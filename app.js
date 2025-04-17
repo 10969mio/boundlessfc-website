@@ -11,6 +11,23 @@ const mongoSanitize = require('express-mongo-sanitize');
 const rateLimit = require('express-rate-limit');
 const fs = require('fs');
 
+// 環境変数の確認
+const requiredEnvVars = [
+  'MONGODB_URI',
+  'SESSION_SECRET',
+  'CLOUDINARY_CLOUD_NAME',
+  'CLOUDINARY_API_KEY',
+  'CLOUDINARY_API_SECRET'
+];
+
+for (const envVar of requiredEnvVars) {
+  if (!process.env[envVar]) {
+    console.error(`環境変数 ${envVar} が設定されていません。`);
+    console.error('.env.exampleを参照して必要な環境変数を設定してください。');
+    process.exit(1);
+  }
+}
+
 // ログディレクトリの作成（存在しない場合）
 const logDir = path.join(__dirname, 'logs');
 if (!fs.existsSync(logDir)) {
@@ -18,9 +35,8 @@ if (!fs.existsSync(logDir)) {
 }
 
 // 環境変数からデータベース接続設定を取得
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/soccer_team_db';
+const MONGODB_URI = process.env.MONGODB_URI;
 const PORT = process.env.PORT || 3000;
-const SESSION_SECRET = process.env.SESSION_SECRET || 'your-secret-key';
 
 // パスポート設定を読み込み
 require('./config/passport')(passport);
@@ -131,9 +147,6 @@ app.use(express.static(path.join(__dirname, 'public'), {
     }
   }
 }));
-
-// デバッグ用のログ
-console.log('静的ファイルのパス:', path.join(__dirname, 'public'));
 
 // 7. グローバル変数の設定
 app.use((req, res, next) => {
