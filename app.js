@@ -23,7 +23,6 @@ const requiredEnvVars = [
 for (const envVar of requiredEnvVars) {
   if (!process.env[envVar]) {
     console.error(`環境変数 ${envVar} が設定されていません。`);
-    console.error('.env.exampleを参照して必要な環境変数を設定してください。');
     process.exit(1);
   }
 }
